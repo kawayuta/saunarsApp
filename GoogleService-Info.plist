@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>800120162787-iqd5uquol58ho37vooa3bqdc98o7pvss.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.800120162787-iqd5uquol58ho37vooa3bqdc98o7pvss</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBn2o0KBaDlXgni7H6vZmjSl15drePVuj4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>800120162787</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kawayuta.saunastep</string>
+	<key>PROJECT_ID</key>
+	<string>saunastep</string>
+	<key>STORAGE_BUCKET</key>
+	<string>saunastep.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:800120162787:ios:c39522ea5b418eb71fb8d6</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-2934182617348947~4486894324</string>
+</dict>
+</plist>
