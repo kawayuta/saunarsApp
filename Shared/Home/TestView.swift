@@ -6,15 +6,51 @@
 //
 
 import SwiftUI
+import PartialSheet
 
-struct Test: View {
+struct TestView: View {
+    @ObservedObject var viewModel: AuthViewModel
+    
+    
+    init() {
+        viewModel = .init(mode: .login)
+        if UserDefaults.standard.string(forKey: "email") != nil {
+            viewModel.email = UserDefaults.standard.string(forKey: "email")!
+        }
+        if UserDefaults.standard.string(forKey: "password") != nil {
+            viewModel.password = UserDefaults.standard.string(forKey: "password")!
+        }
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView() {
+            VStack {
+                Text(String(viewModel.RequestStateFlag))
+                
+                NavigationLink(destination:
+                                WentSaunaView(viewModel: .init(mode: .saunas)).environmentObject(PartialSheetManager()), isActive: $viewModel.RequestStateFlag) {
+                }
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .animation(.none)
+                
+            }
+        }
+//        .navigationBarTitle("")
+//        .navigationBarHidden(true)
+//        .onAppear {
+//            UINavigationBar.setAnimationsEnabled(false)
+////            self.viewModel.authSignIn()
+//        }
+    }
+    
+    func autoSignIn() {
+//        self.viewModel.authSignIn()
     }
 }
 
-struct Test_Previews: PreviewProvider {
+struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        Test()
+        TestView()
     }
 }

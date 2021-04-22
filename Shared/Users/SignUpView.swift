@@ -7,47 +7,13 @@
 
 import SwiftUI
 import UIKit
+import PartialSheet
 
 struct SignUpView: View {
-    var body: some View {
-        SignUpTitleView()
-    }
-}
-
-struct SignUpTitleView: View {
-    var body: some View {
-        VStack() {
-            Spacer()
-            SignUpFieldView()
-        }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .none)
-        .background(Color(hex: "DDD"))
-        .edgesIgnoringSafeArea(.all)
-    }
-}
-
-struct SignUpFieldView: View {
-    var body: some View {
-        VStack() {
-            Text("新しいアカウント")
-                .font(.title2).bold().frame(maxWidth: .infinity, maxHeight: .none, alignment: .leading)
-                .padding(EdgeInsets(top: 25, leading: 15, bottom: 0, trailing: 15))
-            UsernameField()
-            EmailField()
-            NewPasswordField()
-            ConfilmPasswordField()
-            RegisterButton()
-        }
-        .background(Color(hex: "FFF")).cornerRadius(25)
-    }
-}
-
-struct UsernameField: View {
-    @State private var username = ""
-
-    var body: some View {
-        
-        TextField("ユーザーネーム", text: $username)
+    @ObservedObject var viewModel: AuthViewModel
+    
+    var usernameTextFeild: some View {
+        TextField("ユーザーネーム", text: $viewModel.username)
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .none)
             .background(Color(hex: "EEE"))
@@ -56,13 +22,9 @@ struct UsernameField: View {
             .cornerRadius(10)
             .padding(EdgeInsets(top: 15, leading: 15, bottom: 5, trailing: 15))
     }
-}
-
-struct EmailField: View {
-    @State private var emailField = ""
-
-    var body: some View {
-        TextField("メールアドレス", text: $emailField).padding()
+    
+    var emailTextFeild: some View {
+        TextField("メールアドレス", text: $viewModel.email).padding()
             .frame(maxWidth: .infinity, maxHeight: .none)
             .background(Color(hex: "EEE"))
             .foregroundColor(.black)
@@ -70,13 +32,9 @@ struct EmailField: View {
             .cornerRadius(10)
             .padding(EdgeInsets(top: 0, leading: 15, bottom: 5, trailing: 15))
     }
-}
-
-struct NewPasswordField: View {
-    @State private var newPassword = ""
-
-    var body: some View {
-        TextField("新しいパスワード", text: $newPassword).padding()
+    
+    var passwordTextFeild: some View {
+        TextField("新しいパスワード", text: $viewModel.password).padding()
             .frame(maxWidth: .infinity, maxHeight: .none)
             .background(Color(hex: "EEE"))
             .foregroundColor(.black)
@@ -84,13 +42,9 @@ struct NewPasswordField: View {
             .cornerRadius(10)
             .padding(EdgeInsets(top: 0, leading: 15, bottom: 5, trailing: 15))
     }
-}
-
-struct ConfilmPasswordField: View {
-    @State private var confilmPassword = ""
-
-    var body: some View {
-        TextField("新しいパスワード（確認）", text: $confilmPassword).padding()
+    
+    var confilmPasswordTextFeild: some View {
+        TextField("新しいパスワード（確認）", text: $viewModel.confilmPassword).padding()
             .frame(maxWidth: .infinity, maxHeight: .none)
             .background(Color(hex: "EEE"))
             .foregroundColor(.black)
@@ -98,15 +52,14 @@ struct ConfilmPasswordField: View {
             .cornerRadius(10)
             .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
     }
-}
-
-
-struct RegisterButton: View {
-    @State private var username = ""
-
-    var body: some View {
+    
+    var registerButton: some View {
         Button("次へ") {
-            
+            print($viewModel.username)
+            print($viewModel.email)
+            print($viewModel.password)
+            print($viewModel.confilmPassword)
+//            viewModel.authSignUp()
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .none)
@@ -115,13 +68,43 @@ struct RegisterButton: View {
         .cornerRadius(30)
         .padding(EdgeInsets(top: 20, leading: 15, bottom: 25, trailing: 15))
     }
+    
+    
+    
+    var body: some View {
+        VStack() {
+            Text(viewModel.title)
+                .font(.title2).bold().frame(maxWidth: .infinity, maxHeight: .none, alignment: .leading)
+                .padding(EdgeInsets(top: 25, leading: 15, bottom: 0, trailing: 15))
+            
+            usernameTextFeild
+            emailTextFeild
+            passwordTextFeild
+            confilmPasswordTextFeild
+            registerButton
+            NavigationLink(destination: TestView(), isActive: $viewModel.RequestStateFlag) {}
+        }
+        .background(Color(hex: "FFF")).cornerRadius(25)
+    }
 }
+//
+//struct SignUpTitleView: View {
+//    var body: some View {
+//        VStack() {
+//            Spacer()
+////            SignUpFieldView(viewModel: <#AuthViewModel#>)
+//        }
+//        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .none)
+//        .background(Color(hex: "DDD"))
+//        .edgesIgnoringSafeArea(.all)
+//    }
+//}
 
 
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView()
+        SignUpView(viewModel: .init(mode: .signup))
     }
 }
 

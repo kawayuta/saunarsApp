@@ -7,14 +7,55 @@
 
 import SwiftUI
 
-struct resultCardView: View {
+struct resultCardMainView: View {
+        let sauna: Saunas?
+
+        init(sauna: Saunas? = nil) {
+            self.sauna = sauna
+        }
+
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack {
+            if let sauna = sauna {
+                let image_url = sauna.image.url
+                URLImageView("\(API.init().imageUrl)\(image_url)")
+                    .frame(width: 150, height: 76, alignment: .center)
+                    .cornerRadius(10)
+                    .aspectRatio(contentMode: .fit)
+                Text(sauna.name_ja)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 1, trailing: 0))
+                    .frame(width: 150, height: 15, alignment: .leading)
+                    .lineLimit(1)
+                    .font(.subheadline, weight: .bold)
+                    .foregroundColor(.black)
+                Text(sauna.address)
+                    .frame(width: 150, height: 15, alignment: .leading)
+                    .lineLimit(1)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                HStack(spacing: 0) {
+                    Image(systemName: "yensign.circle")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 18)
+                        .foregroundColor(Color(hex: "44556b"))
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
+                    Text(String(sauna.price))
+                        .font(.subheadline)
+                        .foregroundColor(Color.black)
+                }
+                .frame(width: 150, alignment: .leading)
+                .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+            }
+        }
+        
     }
 }
 
-struct resultCardView_Previews: PreviewProvider {
+struct resultCardMainView_Previews: PreviewProvider {
     static var previews: some View {
-        resultCardView()
+        resultCardMainView()
     }
 }

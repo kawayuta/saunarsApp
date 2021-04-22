@@ -1,0 +1,88 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Cluster",
+        "repositoryURL": "https://github.com/efremidze/Cluster.git",
+        "state": {
+          "branch": null,
+          "revision": "3c70568c779456355895adf354a01e7fe5440ebf",
+          "version": "3.0.3"
+        }
+      },
+      {
+        "package": "GoogleMapsTileOverlay",
+        "repositoryURL": "https://github.com/thepeaklab/GoogleMapsTileOverlay.git",
+        "state": {
+          "branch": null,
+          "revision": "a31bd418be8e49b7b118d93f1e79b3a91407e82a",
+          "version": "0.5.0"
+        }
+      },
+      {
+        "package": "KeyboardObserving",
+        "repositoryURL": "https://github.com/nickffox/KeyboardObserving.git",
+        "state": {
+          "branch": null,
+          "revision": "26c0c913c11f0ee77006740ca1d8b478d222184f",
+          "version": "0.3.0"
+        }
+      },
+      {
+        "package": "Neumorphic",
+        "repositoryURL": "https://github.com/costachung/neumorphic/",
+        "state": {
+          "branch": null,
+          "revision": "3fa56e844a5e375ff3d38e3c770886bcc949f6f5",
+          "version": "2.0.5"
+        }
+      },
+      {
+        "package": "PartialSheet",
+        "repositoryURL": "https://github.com/AndreaMiotto/PartialSheet.git",
+        "state": {
+          "branch": null,
+          "revision": "936465232b6399e402e79d5b031622af9a5e9960",
+          "version": "2.1.11"
+        }
+      },
+      {
+        "package": "RxSwift",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "7e01c05f25c025143073eaa3be3532f9375c614b",
+          "version": "6.1.0"
+        }
+      },
+      {
+        "package": "SwiftUIPager",
+        "repositoryURL": "https://github.com/fermoya/SwiftUIPager.git",
+        "state": {
+          "branch": null,
+          "revision": "fd375686c890aff55429b4da12a22dbacca08ae4",
+          "version": "2.1.0"
+        }
+      },
+      {
+        "package": "SwiftUIX",
+        "repositoryURL": "https://github.com/SwiftUIX/SwiftUIX.git",
+        "state": {
+          "branch": null,
+          "revision": "c2890b24e56e540b2c2fe00394b3826e4659c97b",
+          "version": "0.0.5"
+        }
+      },
+      {
+        "package": "URLQueryItemsCoder",
+        "repositoryURL": "https://github.com/malt03/URLQueryItemsCoder.git",
+        "state": {
+          "branch": null,
+          "revision": "dd155936ac17630cdb0f5727eab650badafbaa2c",
+          "version": "0.0.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

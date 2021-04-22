@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct LaunchScreenView: View {
     
         var body: some View {
             ButtonWapView()
@@ -59,11 +59,14 @@ struct SignInButton: View {
             .background(Color.gray)
             .foregroundColor(.white)
             .cornerRadius(30)
+            .onAppear {
+                UINavigationBar.setAnimationsEnabled(true)
+            }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct LaunchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LaunchScreenView()
     }
 }

@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-struct ContentView: View {
-
+struct SaunaSmallView: View {
+    
+    var saunaId = String(describing: UserDefaults.standard.string(forKey: "saunaId")!)
     var body: some View {
         VStack {
-            URLImage(url: "http://localhost:3000/sauna_images/1.jpg")
-                .aspectRatio(contentMode: .fit)
+            URLImageView("\(API.init().host)/sauna_images/\(saunaId).jpg").aspectRatio(contentMode: .fit)
+            
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct SaunaSmallView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SaunaSmallView()
     }
 }

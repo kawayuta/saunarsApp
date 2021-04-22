@@ -22,6 +22,8 @@ struct WentButtonView: View {
             Button(viewModel.state ? "行きたい済み" : "行きたい！") {
                 viewModel.state ? viewModel.putNotWent() : viewModel.putWent()
                 viewModel.state.toggle()
+                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                impactMed.impactOccurred()
             }
             .frame(maxWidth: 150, maxHeight: 50, alignment: .center)
             .background(RoundedRectangle(cornerRadius: 20).fill(viewModel.state ? .blue : mainColor).softOuterShadow())

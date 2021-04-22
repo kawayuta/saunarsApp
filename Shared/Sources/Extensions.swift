@@ -24,7 +24,7 @@ extension MKMapRect {
 let CLLocationCoordinate2DMax = CLLocationCoordinate2D(latitude: 90, longitude: 180)
 let MKMapPointMax = MKMapPoint(CLLocationCoordinate2DMax)
 
-extension CLLocationCoordinate2D: Hashable {
+extension CLLocationCoordinate2D {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(latitude)
         hasher.combine(longitude)
