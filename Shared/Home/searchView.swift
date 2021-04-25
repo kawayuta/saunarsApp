@@ -84,12 +84,12 @@ struct searchView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
             
             VStack(spacing: 0) {
-                        Picker("", selection: $selectedTab) {
-                            Text("こだわり").tag(0)
-                            Text("設備・ルール").tag(1)
-                            Text("アメニティ").tag(2)
-                        }.pickerStyle(SegmentedPickerStyle())
-                        .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
+                    Picker("", selection: $selectedTab) {
+                        Text("こだわり").tag(0)
+                        Text("設備・ルール").tag(1)
+                        Text("アメニティ").tag(2)
+                    }.pickerStyle(SegmentedPickerStyle())
+                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
                 
                     Rectangle().foregroundColor(Color(hex:"eff2f5")).frame(height: 1)
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))

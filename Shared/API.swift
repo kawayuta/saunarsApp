@@ -44,7 +44,7 @@ struct API {
                 #if targetEnvironment(simulator)
                     return "http://0.0.0.0"
                 #else
-                    return "http://kawayuta.local:3000"
+                    return "http://kawayuta.local"
                 #endif
             case .staging:
                 return ""

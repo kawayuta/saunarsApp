@@ -11,6 +11,9 @@ struct User: Codable {
     let id: Int
     let username: String
     let wents: [WentSauna]
+    let activities: [Activity]
+    let activities_reviews: [Review]
+    let activities_saunas: [ReviewSauna]
 }
 
 struct WentSauna: Codable, Identifiable {

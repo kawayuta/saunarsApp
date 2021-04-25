@@ -19,14 +19,18 @@ struct WentButtonView: View {
     
     var wentButton: some View {
         VStack(alignment: .leading) {
-            Button(viewModel.state ? "行きたい済み" : "行きたい！") {
+            Button(action: {
                 viewModel.state ? viewModel.putNotWent() : viewModel.putWent()
                 viewModel.state.toggle()
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
-            }
+            }, label: {
+                Text(viewModel.state ? "行きたい済み" : "行きたい！")
+                    .font(.title3)
+            })
             .frame(maxWidth: 150, maxHeight: 50, alignment: .center)
-            .background(RoundedRectangle(cornerRadius: 20).fill(viewModel.state ? .blue : mainColor).softOuterShadow())
+            .background(RoundedRectangle(cornerRadius: 15).fill(viewModel.state ? .blue : Color.white))
+            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
             .padding(EdgeInsets(top:0, leading: 15, bottom: 10, trailing: 15))
             .foregroundColor(viewModel.state ? .white : .blue)
         }

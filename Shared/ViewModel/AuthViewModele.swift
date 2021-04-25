@@ -63,22 +63,27 @@ extension AuthViewModel {
                     self.authSignUp(completion: { signUpCompletion in
                         if signUpCompletion {
                             print("アカウント作ったよ")
-                            if signInCompletion {
-                                completion(true)
-                                print("アカウント作ってログインしたよ")
-                            } else {
-                                completion(false)
-                                print("アカウント作ったのにログインできないよ")
-                            }
+                            authSignIn(completion: { _signInCompletion in
+                                if _signInCompletion {
+                                    completion(true)
+                                    print("アカウント作ってログインしたよ")
+                                } else {
+                                    completion(false)
+                                    print("アカウント作ったのにログインできないよ")
+                                }
+                            })
+                            
                         } else {
                             print("アカウントがあるよ")
-                            if signInCompletion {
-                                completion(true)
-                                print("もともとあったアカウントでログインしたよ")
-                            } else {
-                                completion(false)
-                                print("アカウントあるのにログインできないよ")
-                            }
+                            authSignIn(completion: { _signInCompletion in
+                                if _signInCompletion {
+                                    completion(true)
+                                    print("もともとあったアカウントでログインしたよ")
+                                } else {
+                                    completion(false)
+                                    print("アカウントあるのにログインできないよ")
+                                }
+                            })
                             
                         }
                     })
@@ -155,6 +160,11 @@ extension AuthViewModel {
         headers["uid"] = self.userDefaults.string(forKey: "uid")
         request.allHTTPHeaderFields = headers
         
+        print(headers["access-token"])
+        print(headers["token-type"])
+        print(headers["client"])
+        print(headers["expiry"])
+        print(headers["uid"])
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(body)

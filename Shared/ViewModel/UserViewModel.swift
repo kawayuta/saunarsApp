@@ -58,5 +58,48 @@ final class UserViewModel: ObservableObject {
 
     
     
+    func deleteUserActivity(activity_id: Int) {
+        let userDefaults = UserDefaults.standard
+        let url = URL(string: "\(API.init().host)/activities/\(activity_id).json")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "DELETE"
+        let body = deleteActivityRequest(activity_id: activity_id)
+        var headers = request.allHTTPHeaderFields ?? [:]
+        headers["Content-Type"] = "application/json"
+        headers["access-token"] = userDefaults.string(forKey: "accessToken")
+        headers["token-type"] = userDefaults.string(forKey: "tokenType")
+        headers["client"] = userDefaults.string(forKey: "client")
+        headers["expiry"] = userDefaults.string(forKey: "expiry")
+        headers["uid"] = userDefaults.string(forKey: "uid")
+        request.allHTTPHeaderFields = headers
+        
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(body)
+            request.httpBody = data
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                guard let data = data else { return }
+                do {
+                    _ = try JSONSerialization.jsonObject(with: data, options: [])
+                    if let httpResponse = response as? HTTPURLResponse {
+                        if httpResponse.statusCode == 200 {
+                            print("activity delete success")
+                        } else {
+                            print("activity delete error")
+                        }
+                    }
+                    
+                } catch let error {
+                    print(error)
+                }
+            }
+            task.resume()
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    
 }
 

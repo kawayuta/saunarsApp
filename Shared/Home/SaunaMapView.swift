@@ -22,6 +22,7 @@ struct SaunaMapView: View {
     @State var searchOptionVisible: Bool = false
     
     @State var searchVisible: Bool = false
+    @State var postReviewVisible: Bool = false
     @State var saunaInfoVisible: Bool = false
     @State var resultCardVisible: Bool = false
     @State var mypageVisible: Bool = false
@@ -55,7 +56,7 @@ struct SaunaMapView: View {
         .partialSheet(isPresented: $searchVisible) {
             searchView(viewModel: viewModel, isPresent: $searchVisible)
         }
-        .frame(width: 100, height: 50)
+        .frame(width: 50, height: 50)
         .background(RoundedRectangle(cornerRadius: 20).fill(mainColor).softOuterShadow())
     }
     
@@ -79,28 +80,35 @@ struct SaunaMapView: View {
         .padding(EdgeInsets(top:0, leading: 30, bottom: 0, trailing: 30))
     }
     
-    var postDiaryButton: some View {
-                Button(action: {
-                    viewModel.requestUserLocation()
-                    viewModel.searchSaunaList(writeRegion: false)
-                            }, label: {
-                                Image(systemName: "highlighter")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 22)
-                                    .foregroundColor(Color.orange)
-                                    .padding(EdgeInsets(top:2, leading: 0, bottom: 0, trailing: 2))
-                                Text("サ記")
-                                    .foregroundColor(Color.orange)
-                })
-                .frame(width: 100, height: 50)
-                .background(RoundedRectangle(cornerRadius: 20).fill(mainColor).softOuterShadow())
-                .padding(EdgeInsets(top:0, leading: 30, bottom: 0, trailing: 30))
+    var postReviewButton: some View {
+        
+        Button(action: {
+            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+            impactMed.impactOccurred()
+            postReviewVisible = true
+        }, label: {
+            Image(systemName: "highlighter")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 22)
+                .foregroundColor(Color.orange)
+                .padding(EdgeInsets(top:2, leading: 0, bottom: 0, trailing: 2))
+            Text("サ活記録")
+                .foregroundColor(Color.orange)
+        })
+        .partialSheet(isPresented: $postReviewVisible) {
+            postActivityReviewView(mapViewModel: viewModel, isPresent: $postReviewVisible, myPageVisible: $mypageVisible)
+        }
+        .frame(width: 150, height: 50)
+        .background(RoundedRectangle(cornerRadius: 20).fill(mainColor).softOuterShadow())
+        .padding(EdgeInsets(top:0, leading: 30, bottom: 0, trailing: 30))
         
     }
     
     var myPageButton: some View {
         Button(action: {
+            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+            impactMed.impactOccurred()
             mypageVisible.toggle()
                     }, label: {
                         Image(systemName: "person.fill")
@@ -178,14 +186,12 @@ struct SaunaMapView: View {
                     ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                         HStack(spacing: 0) {
                             currentLocationButton
-//                            searchButton
+                            searchButton
                             Spacer()
                         }
                         HStack(spacing: 0) {
                             Spacer()
-                            searchButton
-                            Spacer()
-//                            postDiaryButton
+                            postReviewButton
                         }
                         
                             NavigationLink("", destination: MyPageView(), isActive: $mypageVisible)
@@ -205,6 +211,9 @@ struct SaunaMapView: View {
             .navigationBarTitle("",displayMode: .large)
             .navigationBarItems(trailing:
                                     Button(action: {
+                                        
+                                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                                        impactMed.impactOccurred()
                                         mypageVisible.toggle()
                                     }, label: {
                                         Image(systemName: "person.fill")
@@ -216,6 +225,12 @@ struct SaunaMapView: View {
                                         .frame(width: 40, height: 40)
                                         .background(RoundedRectangle(cornerRadius: 15).fill(mainColor).softOuterShadow())
             )
+        }.onAppear() {
+//            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+////                postReviewVisible = true
+//                mypageVisible = true
+//            }
         }
         
     }

@@ -42,7 +42,6 @@ struct SaunaView: View {
         }.onAppear() {
             if !loaded { viewModel.fetchSauna(); loaded = true }
         }
-        .background(RoundedRectangle(cornerRadius: 0).fill(mainColor).softOuterShadow())
         
     }
 }

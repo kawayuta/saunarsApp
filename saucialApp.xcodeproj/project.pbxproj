@@ -19,7 +19,6 @@
 		3F48D320262C94DE00E33ED4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F48D31F262C94DE00E33ED4 /* GoogleService-Info.plist */; };
 		3F48D326262C954F00E33ED4 /* tileOverlay.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F48D325262C954F00E33ED4 /* tileOverlay.json */; };
 		3F48D33E262D515900E33ED4 /* FirebaseAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F48D33D262D515900E33ED4 /* FirebaseAnalyticsTracker.swift */; };
-		3F52CF34262D791200899162 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F52CF33262D791200899162 /* Assets.xcassets */; };
 		3F52CF5D262DAA2500899162 /* Instantiate in Frameworks */ = {isa = PBXBuildFile; productRef = 3F52CF5C262DAA2500899162 /* Instantiate */; };
 		3F52CF5F262DAA2500899162 /* InstantiateStandard in Frameworks */ = {isa = PBXBuildFile; productRef = 3F52CF5E262DAA2500899162 /* InstantiateStandard */; };
 		3F67209525FCE29800149D17 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F67209425FCE29800149D17 /* TestView.swift */; };
@@ -93,6 +92,17 @@
 		3FD3D13F25FC520900748910 /* WentSaunaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD3D13D25FC520900748910 /* WentSaunaViewModel.swift */; };
 		3FD3D14525FC572900748910 /* Sauna.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD3D14425FC572900748910 /* Sauna.swift */; };
 		3FD3D14625FC572900748910 /* Sauna.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD3D14425FC572900748910 /* Sauna.swift */; };
+		3FDB27AB26333A3500FE25DB /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27AA26333A3500FE25DB /* Review.swift */; };
+		3FDB27AC26333A3500FE25DB /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27AA26333A3500FE25DB /* Review.swift */; };
+		3FDB27B22633482700FE25DB /* saunaSelectStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27B12633482700FE25DB /* saunaSelectStepView.swift */; };
+		3FDB27B32633482700FE25DB /* saunaSelectStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27B12633482700FE25DB /* saunaSelectStepView.swift */; };
+		3FDB27C526337F7600FE25DB /* postBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27C426337F7600FE25DB /* postBodyView.swift */; };
+		3FDB27C626337F7600FE25DB /* postBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27C426337F7600FE25DB /* postBodyView.swift */; };
+		3FDB27CC2634547F00FE25DB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27CB2634547F00FE25DB /* Activity.swift */; };
+		3FDB27CD2634547F00FE25DB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27CB2634547F00FE25DB /* Activity.swift */; };
+		3FDB27D426347FC400FE25DB /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 3FDB27D326347FC400FE25DB /* Introspect */; };
+		3FDB27DA2634C9A700FE25DB /* RaderChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27D92634C9A700FE25DB /* RaderChartView.swift */; };
+		3FDB27DB2634C9A700FE25DB /* RaderChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27D92634C9A700FE25DB /* RaderChartView.swift */; };
 		3FE59071262F66B600412362 /* SortDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE59070262F66B600412362 /* SortDropDownView.swift */; };
 		3FE59072262F66B600412362 /* SortDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE59070262F66B600412362 /* SortDropDownView.swift */; };
 		3FE590AC2630B37100412362 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE590AB2630B37100412362 /* MyPageView.swift */; };
@@ -102,6 +112,14 @@
 		3FE591002631181600412362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE590FE2631181600412362 /* User.swift */; };
 		3FE591062631191900412362 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE591052631191900412362 /* UserViewModel.swift */; };
 		3FE591072631191900412362 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE591052631191900412362 /* UserViewModel.swift */; };
+		3FE591A6263206AC00412362 /* postActivityReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE591A5263206AC00412362 /* postActivityReviewView.swift */; };
+		3FE591A7263206AD00412362 /* postActivityReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE591A5263206AC00412362 /* postActivityReviewView.swift */; };
+		3FE591C6263273E400412362 /* routineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE591C5263273E400412362 /* routineView.swift */; };
+		3FE591C7263273E400412362 /* routineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE591C5263273E400412362 /* routineView.swift */; };
+		3FE591CD2632741A00412362 /* reviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE591CC2632741A00412362 /* reviewView.swift */; };
+		3FE591CE2632741A00412362 /* reviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE591CC2632741A00412362 /* reviewView.swift */; };
+		3FE591D426332EB800412362 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE591D326332EB800412362 /* ReviewViewModel.swift */; };
+		3FE591D526332EB800412362 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE591D326332EB800412362 /* ReviewViewModel.swift */; };
 		6D23AFE5571DCD0D6056D545 /* Pods_saucialApp__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DAC0B96C30A019EB97BAC2C /* Pods_saucialApp__iOS_.framework */; };
 /* End PBXBuildFile section */
 
@@ -173,11 +191,20 @@
 		3FD3D11D25FBCD2500748910 /* OptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionView.swift; sourceTree = "<group>"; };
 		3FD3D13D25FC520900748910 /* WentSaunaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WentSaunaViewModel.swift; sourceTree = "<group>"; };
 		3FD3D14425FC572900748910 /* Sauna.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sauna.swift; sourceTree = "<group>"; };
+		3FDB27AA26333A3500FE25DB /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		3FDB27B12633482700FE25DB /* saunaSelectStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saunaSelectStepView.swift; sourceTree = "<group>"; };
+		3FDB27C426337F7600FE25DB /* postBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postBodyView.swift; sourceTree = "<group>"; };
+		3FDB27CB2634547F00FE25DB /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		3FDB27D92634C9A700FE25DB /* RaderChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaderChartView.swift; sourceTree = "<group>"; };
 		3FE59070262F66B600412362 /* SortDropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropDownView.swift; sourceTree = "<group>"; };
 		3FE590AB2630B37100412362 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		3FE590B62630C97800412362 /* resultCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultCardView.swift; sourceTree = "<group>"; };
 		3FE590FE2631181600412362 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3FE591052631191900412362 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		3FE591A5263206AC00412362 /* postActivityReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postActivityReviewView.swift; sourceTree = "<group>"; };
+		3FE591C5263273E400412362 /* routineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = routineView.swift; sourceTree = "<group>"; };
+		3FE591CC2632741A00412362 /* reviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reviewView.swift; sourceTree = "<group>"; };
+		3FE591D326332EB800412362 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		3FF3C45F72DE1912A7DBA4AA /* Pods-saucialApp (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-saucialApp (iOS).release.xcconfig"; path = "Target Support Files/Pods-saucialApp (iOS)/Pods-saucialApp (iOS).release.xcconfig"; sourceTree = "<group>"; };
 		6F145B4312E4E7EFEF55230B /* Pods-saucialApp (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-saucialApp (macOS).release.xcconfig"; path = "Target Support Files/Pods-saucialApp (macOS)/Pods-saucialApp (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		81181B1383DC81F2A4AC81BC /* Pods-saucialApp (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-saucialApp (macOS).debug.xcconfig"; path = "Target Support Files/Pods-saucialApp (macOS)/Pods-saucialApp (macOS).debug.xcconfig"; sourceTree = "<group>"; };
@@ -195,6 +222,7 @@
 				3FABDFEE2628823300B0B09A /* RxSwift in Frameworks */,
 				3FABDFF22628823300B0B09A /* RxCocoa in Frameworks */,
 				3FD3D12625FBD21200748910 /* PartialSheet in Frameworks */,
+				3FDB27D426347FC400FE25DB /* Introspect in Frameworks */,
 				3F52CF5D262DAA2500899162 /* Instantiate in Frameworks */,
 				3F99420C2609343D0078888C /* URLQueryItemsCoder in Frameworks */,
 				3F72BCE9260F9D170076BE7F /* SwiftUIPager in Frameworks */,
@@ -279,6 +307,8 @@
 				3FE590FE2631181600412362 /* User.swift */,
 				3F6720D725FE57B000149D17 /* Went.swift */,
 				3FD3D14425FC572900748910 /* Sauna.swift */,
+				3FDB27AA26333A3500FE25DB /* Review.swift */,
+				3FDB27CB2634547F00FE25DB /* Activity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -378,6 +408,7 @@
 				3F72BCD4260EAB110076BE7F /* SaunaViewModel.swift */,
 				3F994226260985740078888C /* MapViewModel.swift */,
 				3FE591052631191900412362 /* UserViewModel.swift */,
+				3FE591D326332EB800412362 /* ReviewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -391,6 +422,7 @@
 				3F72BCFC260FBAD20076BE7F /* MapView.swift */,
 				3FE590B52630C95D00412362 /* resultCardView */,
 				3F994256260D15BA0078888C /* searchView.swift */,
+				3FE591C3263273B600412362 /* postActivityReview */,
 				3F67209425FCE29800149D17 /* TestView.swift */,
 				3FE59070262F66B600412362 /* SortDropDownView.swift */,
 			);
@@ -411,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				3FE590AB2630B37100412362 /* MyPageView.swift */,
+				3FDB27D92634C9A700FE25DB /* RaderChartView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -422,6 +455,18 @@
 				3F994247260CF4E60078888C /* resultCardRoomsView.swift */,
 			);
 			path = resultCardView;
+			sourceTree = "<group>";
+		};
+		3FE591C3263273B600412362 /* postActivityReview */ = {
+			isa = PBXGroup;
+			children = (
+				3FE591A5263206AC00412362 /* postActivityReviewView.swift */,
+				3FDB27B12633482700FE25DB /* saunaSelectStepView.swift */,
+				3FE591C5263273E400412362 /* routineView.swift */,
+				3FE591CC2632741A00412362 /* reviewView.swift */,
+				3FDB27C426337F7600FE25DB /* postBodyView.swift */,
+			);
+			path = postActivityReview;
 			sourceTree = "<group>";
 		};
 		4A987E4325E95E567C78A885 /* Pods */ = {
@@ -468,6 +513,7 @@
 				3FABDFF32628823300B0B09A /* RxBlocking */,
 				3F52CF5C262DAA2500899162 /* Instantiate */,
 				3F52CF5E262DAA2500899162 /* InstantiateStandard */,
+				3FDB27D326347FC400FE25DB /* Introspect */,
 			);
 			productName = "saucialApp (iOS)";
 			productReference = 3FC2DF0C25F9D8380080D98F /* saucialApp.app */;
@@ -573,6 +619,7 @@
 				3F72BD9926103DD30076BE7F /* XCRemoteSwiftPackageReference "neumorphic" */,
 				3FABDFEC2628823300B0B09A /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3F52CF5B262DAA2500899162 /* XCRemoteSwiftPackageReference "Instantiate" */,
+				3FDB27D226347FC400FE25DB /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 3FC2DF0D25F9D8380080D98F /* Products */;
 			projectDirPath = "";
@@ -593,7 +640,6 @@
 			files = (
 				3FC2DF3225F9D8380080D98F /* Assets.xcassets in Resources */,
 				3F48D326262C954F00E33ED4 /* tileOverlay.json in Resources */,
-				3F52CF34262D791200899162 /* Assets.xcassets in Resources */,
 				3F48D320262C94DE00E33ED4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -704,14 +750,19 @@
 				3F72BCEF260F9FCD0076BE7F /* API.swift in Sources */,
 				3FE590B72630C97800412362 /* resultCardView.swift in Sources */,
 				3FD3D0E925FB8F4F00748910 /* HomeView.swift in Sources */,
+				3FE591C6263273E400412362 /* routineView.swift in Sources */,
 				3FE591062631191900412362 /* UserViewModel.swift in Sources */,
 				3F994248260CF4E60078888C /* resultCardRoomsView.swift in Sources */,
+				3FE591D426332EB800412362 /* ReviewViewModel.swift in Sources */,
 				3FD3D0CD25FB8C0300748910 /* AuthViewModele.swift in Sources */,
 				3F468D332624E56800BF3763 /* SliderData.swift in Sources */,
 				3FD3D10825FBBC4800748910 /* Tabs.swift in Sources */,
 				3F994257260D15BA0078888C /* searchView.swift in Sources */,
 				3FD3D0FD25FBA20200748910 /* WentSaunaView.swift in Sources */,
+				3FDB27CC2634547F00FE25DB /* Activity.swift in Sources */,
+				3FDB27C526337F7600FE25DB /* postBodyView.swift in Sources */,
 				3F48D33E262D515900E33ED4 /* FirebaseAnalyticsTracker.swift in Sources */,
+				3FE591A6263206AC00412362 /* postActivityReviewView.swift in Sources */,
 				3F99421226094D7E0078888C /* SaunaMapView.swift in Sources */,
 				3F994227260985740078888C /* MapViewModel.swift in Sources */,
 				3FC2DF8625F9E56E0080D98F /* SignUpView.swift in Sources */,
@@ -723,7 +774,11 @@
 				3F72BCCE260EA0E00076BE7F /* SaunaView.swift in Sources */,
 				3F72BCFD260FBAD20076BE7F /* MapView.swift in Sources */,
 				3FD3D14525FC572900748910 /* Sauna.swift in Sources */,
+				3FDB27DA2634C9A700FE25DB /* RaderChartView.swift in Sources */,
+				3FDB27B22633482700FE25DB /* saunaSelectStepView.swift in Sources */,
+				3FE591CD2632741A00412362 /* reviewView.swift in Sources */,
 				3F6720CD25FE4CA700149D17 /* WentButtonViewModel.swift in Sources */,
+				3FDB27AB26333A3500FE25DB /* Review.swift in Sources */,
 				3FB95A2E25FB40A30071C9B6 /* Auth.swift in Sources */,
 				3FD3D11E25FBCD2500748910 /* OptionView.swift in Sources */,
 				3F72BCD5260EAB110076BE7F /* SaunaViewModel.swift in Sources */,
@@ -738,10 +793,12 @@
 			files = (
 				3F99421326094D7E0078888C /* SaunaMapView.swift in Sources */,
 				3FC2DF9525F9EEA00080D98F /* Extension.swift in Sources */,
+				3FDB27B32633482700FE25DB /* saunaSelectStepView.swift in Sources */,
 				3FE59072262F66B600412362 /* SortDropDownView.swift in Sources */,
 				3F6720AD25FD0B8300149D17 /* ImageDownloader.swift in Sources */,
 				3F6720C325FE4C4200149D17 /* WentButtonView.swift in Sources */,
 				3F468D2D2624E54F00BF3763 /* Wave.swift in Sources */,
+				3FE591A7263206AD00412362 /* postActivityReviewView.swift in Sources */,
 				3F72BCD6260EAB110076BE7F /* SaunaViewModel.swift in Sources */,
 				3F994258260D15BA0078888C /* searchView.swift in Sources */,
 				3F72BCCF260EA0E00076BE7F /* SaunaView.swift in Sources */,
@@ -749,27 +806,34 @@
 				3FC2DF3125F9D8380080D98F /* LaunchScreenView.swift in Sources */,
 				3F72BCF0260F9FCD0076BE7F /* API.swift in Sources */,
 				3FD3D0EA25FB8F4F00748910 /* HomeView.swift in Sources */,
+				3FE591CE2632741A00412362 /* reviewView.swift in Sources */,
 				3FD3D11F25FBCD2500748910 /* OptionView.swift in Sources */,
 				3FC2DF8725F9E56E0080D98F /* SignUpView.swift in Sources */,
 				3F6720D925FE57B000149D17 /* Went.swift in Sources */,
 				3F468D342624E56800BF3763 /* SliderData.swift in Sources */,
+				3FE591D526332EB800412362 /* ReviewViewModel.swift in Sources */,
 				3FC2DF8E25F9EBCA0080D98F /* SignInView.swift in Sources */,
 				3F468D3B2624E59D00BF3763 /* LiquidSwiper.swift in Sources */,
 				3F48D1F7262B42B500E33ED4 /* TinyAdView.swift in Sources */,
 				3F67209625FCE29800149D17 /* TestView.swift in Sources */,
 				3F994228260985740078888C /* MapViewModel.swift in Sources */,
+				3FDB27AC26333A3500FE25DB /* Review.swift in Sources */,
 				3FC2DF2F25F9D8380080D98F /* saucialAppApp.swift in Sources */,
 				3FD3D14625FC572900748910 /* Sauna.swift in Sources */,
 				3FE591002631181600412362 /* User.swift in Sources */,
 				3F994249260CF4E60078888C /* resultCardRoomsView.swift in Sources */,
+				3FE591C7263273E400412362 /* routineView.swift in Sources */,
 				3FD3D10925FBBC4800748910 /* Tabs.swift in Sources */,
 				3F6720B425FD0BB600149D17 /* SaunaSmallView.swift in Sources */,
+				3FDB27CD2634547F00FE25DB /* Activity.swift in Sources */,
+				3FDB27C626337F7600FE25DB /* postBodyView.swift in Sources */,
 				3F99425F260E17780078888C /* SaunasView.swift in Sources */,
 				3FD3D13F25FC520900748910 /* WentSaunaViewModel.swift in Sources */,
 				3FE590B82630C97800412362 /* resultCardView.swift in Sources */,
 				3F6720CE25FE4CA700149D17 /* WentButtonViewModel.swift in Sources */,
 				3FD3D0CE25FB8C0300748910 /* AuthViewModele.swift in Sources */,
 				3FE591072631191900412362 /* UserViewModel.swift in Sources */,
+				3FDB27DB2634C9A700FE25DB /* RaderChartView.swift in Sources */,
 				3FD3D0FE25FBA20200748910 /* WentSaunaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -939,7 +1003,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kawayuta.saunastep;
 				PRODUCT_NAME = saucialApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -967,7 +1031,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kawayuta.saunastep;
 				PRODUCT_NAME = saucialApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1250,6 +1314,14 @@
 				minimumVersion = 0.0.5;
 			};
 		};
+		3FDB27D226347FC400FE25DB /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1322,6 +1394,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3FD3D13625FBE1FF00748910 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
+		};
+		3FDB27D326347FC400FE25DB /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3FDB27D226347FC400FE25DB /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
