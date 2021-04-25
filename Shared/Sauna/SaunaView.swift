@@ -18,6 +18,7 @@ struct SaunaView: View {
     @StateObject var page: Page = .first()
     var items = Array(0..<10)
     let mainColor = Color.Neumorphic.main
+    @State var openWebVisible: Bool = false
     
     init(sauna_id: String) {
         viewModel = SaunaViewModel(sauna_id: sauna_id)
@@ -33,13 +34,24 @@ struct SaunaView: View {
                                     .aspectRatio(contentMode: .fill)
                                 headerView.foregroundColor(Color.black)
                                 WentButtonView(viewModel: .init(mode: .went, sauna_id: String(sauna.id)))
+//                                ReviewChartView()
                                 rooms
                                 rolesAndAmenities
                                 fundamentalInformation
+                                if sauna.hp != "" { openWeb }
                             }
+                            .padding(EdgeInsets(top:0, leading: 0, bottom: 70, trailing: 0))
                         }
+                        .background(RoundedRectangle(cornerRadius: 0).fill(mainColor).softOuterShadow())
+                        .sheet(isPresented: $openWebVisible) {
+                            WebView(urlString: sauna.hp)
+                        }
+
                 }
-        }.onAppear() {
+        }
+        .ignoresSafeArea()
+        .background(RoundedRectangle(cornerRadius: 0).fill(mainColor).softOuterShadow())
+        .onAppear() {
             if !loaded { viewModel.fetchSauna(); loaded = true }
         }
         
@@ -48,6 +60,27 @@ struct SaunaView: View {
 
 
 extension SaunaView {
+    var openWeb: some View {
+        Button(action: {
+            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+            impactMed.impactOccurred()
+            openWebVisible.toggle()
+                    }, label: {
+                        HStack {
+                            Image(systemName: "link")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 22)
+                                .foregroundColor(Color(hex: "44556b"))
+                                .padding(EdgeInsets(top:2, leading: 0, bottom: 0, trailing: 2))
+                            Text("公式サイト")
+                        }
+        })
+        .frame(width: 130, height: 50)
+        .background(RoundedRectangle(cornerRadius: 20).fill(mainColor).softOuterShadow())
+        .padding(EdgeInsets(top:30, leading: 15, bottom: 0, trailing: 15))
+    }
+    
     var rooms: some View {
         VStack {
             if let sauna = viewModel.sauna {

@@ -157,7 +157,7 @@ final class ReviewViewModel: ObservableObject {
         let queryItemLon = URLQueryItem(name: "longitude", value: String(region.center.longitude))
         let queryItemCurrentLat = URLQueryItem(name: "currentLatitude", value: String(currentRegion.center.latitude))
         let queryItemCurrentLon = URLQueryItem(name: "currentLongitude", value: String(currentRegion.center.longitude))
-        let queryItemRadius = URLQueryItem(name: "radius", value: "1000")
+        let queryItemRadius = URLQueryItem(name: "radius", value: keyword != "" ? "1000" : "5")
         let queryItemSortType = URLQueryItem(name: "sortType", value: "0") // current region sort
         queryItems.append(queryItemLat)
         queryItems.append(queryItemLon)

@@ -29,8 +29,8 @@ struct WentButtonView: View {
                     .font(.title3)
             })
             .frame(maxWidth: 150, maxHeight: 50, alignment: .center)
-            .background(RoundedRectangle(cornerRadius: 15).fill(viewModel.state ? .blue : Color.white))
-            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.blue, lineWidth: 1))
+            .background(RoundedRectangle(cornerRadius: 15).fill(viewModel.state ? .blue : mainColor).softOuterShadow())
+            .overlay(RoundedRectangle(cornerRadius: 15).stroke(viewModel.state ? .white : Color.blue, lineWidth: 1))
             .padding(EdgeInsets(top:0, leading: 15, bottom: 10, trailing: 15))
             .foregroundColor(viewModel.state ? .white : .blue)
         }

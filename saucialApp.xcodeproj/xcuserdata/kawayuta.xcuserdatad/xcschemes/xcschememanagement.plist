@@ -70,12 +70,12 @@
 		<key>saucialApp (iOS).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>28</integer>
 		</dict>
 		<key>saucialApp (macOS).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>27</integer>
 		</dict>
 	</dict>
 </dict>

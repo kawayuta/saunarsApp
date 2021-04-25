@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		147436993756C1785B35931C /* Pods_saucialApp__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85487102A094E0B3B7801A0D /* Pods_saucialApp__macOS_.framework */; };
+		3F0E31572635F20700E2D6D9 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E31562635F20700E2D6D9 /* WebView.swift */; };
+		3F0E31582635F20700E2D6D9 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E31562635F20700E2D6D9 /* WebView.swift */; };
+		3F0E31752635FB9B00E2D6D9 /* ReviewChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E31742635FB9B00E2D6D9 /* ReviewChartView.swift */; };
+		3F0E31762635FB9B00E2D6D9 /* ReviewChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0E31742635FB9B00E2D6D9 /* ReviewChartView.swift */; };
 		3F468D2C2624E54F00BF3763 /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F468D2B2624E54E00BF3763 /* Wave.swift */; };
 		3F468D2D2624E54F00BF3763 /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F468D2B2624E54E00BF3763 /* Wave.swift */; };
 		3F468D332624E56800BF3763 /* SliderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F468D322624E56800BF3763 /* SliderData.swift */; };
@@ -101,8 +105,6 @@
 		3FDB27CC2634547F00FE25DB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27CB2634547F00FE25DB /* Activity.swift */; };
 		3FDB27CD2634547F00FE25DB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27CB2634547F00FE25DB /* Activity.swift */; };
 		3FDB27D426347FC400FE25DB /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 3FDB27D326347FC400FE25DB /* Introspect */; };
-		3FDB27DA2634C9A700FE25DB /* RaderChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27D92634C9A700FE25DB /* RaderChartView.swift */; };
-		3FDB27DB2634C9A700FE25DB /* RaderChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27D92634C9A700FE25DB /* RaderChartView.swift */; };
 		3FE59071262F66B600412362 /* SortDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE59070262F66B600412362 /* SortDropDownView.swift */; };
 		3FE59072262F66B600412362 /* SortDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE59070262F66B600412362 /* SortDropDownView.swift */; };
 		3FE590AC2630B37100412362 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE590AB2630B37100412362 /* MyPageView.swift */; };
@@ -142,6 +144,8 @@
 
 /* Begin PBXFileReference section */
 		2A64427FE9A9A378E632F2B7 /* Pods-saucialApp (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-saucialApp (iOS).debug.xcconfig"; path = "Target Support Files/Pods-saucialApp (iOS)/Pods-saucialApp (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		3F0E31562635F20700E2D6D9 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		3F0E31742635FB9B00E2D6D9 /* ReviewChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewChartView.swift; sourceTree = "<group>"; };
 		3F468D2B2624E54E00BF3763 /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
 		3F468D322624E56800BF3763 /* SliderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderData.swift; sourceTree = "<group>"; };
 		3F468D392624E59D00BF3763 /* LiquidSwiper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidSwiper.swift; sourceTree = "<group>"; };
@@ -195,7 +199,6 @@
 		3FDB27B12633482700FE25DB /* saunaSelectStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saunaSelectStepView.swift; sourceTree = "<group>"; };
 		3FDB27C426337F7600FE25DB /* postBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postBodyView.swift; sourceTree = "<group>"; };
 		3FDB27CB2634547F00FE25DB /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
-		3FDB27D92634C9A700FE25DB /* RaderChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaderChartView.swift; sourceTree = "<group>"; };
 		3FE59070262F66B600412362 /* SortDropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropDownView.swift; sourceTree = "<group>"; };
 		3FE590AB2630B37100412362 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		3FE590B62630C97800412362 /* resultCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultCardView.swift; sourceTree = "<group>"; };
@@ -285,7 +288,9 @@
 				3F6720B225FD0BB600149D17 /* SaunaSmallView.swift */,
 				3F99425D260E17770078888C /* SaunasView.swift */,
 				3F72BCCD260EA0E00076BE7F /* SaunaView.swift */,
+				3F0E31562635F20700E2D6D9 /* WebView.swift */,
 				3F6720C125FE4C4200149D17 /* WentButtonView.swift */,
+				3F0E31742635FB9B00E2D6D9 /* ReviewChartView.swift */,
 			);
 			path = Sauna;
 			sourceTree = "<group>";
@@ -443,7 +448,6 @@
 			isa = PBXGroup;
 			children = (
 				3FE590AB2630B37100412362 /* MyPageView.swift */,
-				3FDB27D92634C9A700FE25DB /* RaderChartView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -766,6 +770,7 @@
 				3F99421226094D7E0078888C /* SaunaMapView.swift in Sources */,
 				3F994227260985740078888C /* MapViewModel.swift in Sources */,
 				3FC2DF8625F9E56E0080D98F /* SignUpView.swift in Sources */,
+				3F0E31572635F20700E2D6D9 /* WebView.swift in Sources */,
 				3FE590FF2631181600412362 /* User.swift in Sources */,
 				3F6720B325FD0BB600149D17 /* SaunaSmallView.swift in Sources */,
 				3FC2DF8D25F9EBCA0080D98F /* SignInView.swift in Sources */,
@@ -774,10 +779,10 @@
 				3F72BCCE260EA0E00076BE7F /* SaunaView.swift in Sources */,
 				3F72BCFD260FBAD20076BE7F /* MapView.swift in Sources */,
 				3FD3D14525FC572900748910 /* Sauna.swift in Sources */,
-				3FDB27DA2634C9A700FE25DB /* RaderChartView.swift in Sources */,
 				3FDB27B22633482700FE25DB /* saunaSelectStepView.swift in Sources */,
 				3FE591CD2632741A00412362 /* reviewView.swift in Sources */,
 				3F6720CD25FE4CA700149D17 /* WentButtonViewModel.swift in Sources */,
+				3F0E31752635FB9B00E2D6D9 /* ReviewChartView.swift in Sources */,
 				3FDB27AB26333A3500FE25DB /* Review.swift in Sources */,
 				3FB95A2E25FB40A30071C9B6 /* Auth.swift in Sources */,
 				3FD3D11E25FBCD2500748910 /* OptionView.swift in Sources */,
@@ -793,6 +798,7 @@
 			files = (
 				3F99421326094D7E0078888C /* SaunaMapView.swift in Sources */,
 				3FC2DF9525F9EEA00080D98F /* Extension.swift in Sources */,
+				3F0E31582635F20700E2D6D9 /* WebView.swift in Sources */,
 				3FDB27B32633482700FE25DB /* saunaSelectStepView.swift in Sources */,
 				3FE59072262F66B600412362 /* SortDropDownView.swift in Sources */,
 				3F6720AD25FD0B8300149D17 /* ImageDownloader.swift in Sources */,
@@ -819,6 +825,7 @@
 				3F994228260985740078888C /* MapViewModel.swift in Sources */,
 				3FDB27AC26333A3500FE25DB /* Review.swift in Sources */,
 				3FC2DF2F25F9D8380080D98F /* saucialAppApp.swift in Sources */,
+				3F0E31762635FB9B00E2D6D9 /* ReviewChartView.swift in Sources */,
 				3FD3D14625FC572900748910 /* Sauna.swift in Sources */,
 				3FE591002631181600412362 /* User.swift in Sources */,
 				3F994249260CF4E60078888C /* resultCardRoomsView.swift in Sources */,
@@ -833,7 +840,6 @@
 				3F6720CE25FE4CA700149D17 /* WentButtonViewModel.swift in Sources */,
 				3FD3D0CE25FB8C0300748910 /* AuthViewModele.swift in Sources */,
 				3FE591072631191900412362 /* UserViewModel.swift in Sources */,
-				3FDB27DB2634C9A700FE25DB /* RaderChartView.swift in Sources */,
 				3FD3D0FE25FBA20200748910 /* WentSaunaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1003,7 +1009,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kawayuta.saunastep;
 				PRODUCT_NAME = saucialApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1031,7 +1037,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kawayuta.saunastep;
 				PRODUCT_NAME = saucialApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";

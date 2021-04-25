@@ -9,7 +9,7 @@ target 'saucialApp (iOS)' do
   pod 'Google-Mobile-Ads-SDK'
   pod 'Firebase/Analytics'
   pod 'Siren'
-
+  pod 'Charts'
 end
 
 target 'saucialApp (macOS)' do

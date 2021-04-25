@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct SaunasView: View {
     @StateObject var viewModel: MapViewModel
@@ -20,16 +21,14 @@ struct SaunasView: View {
     
     var body: some View {
         
-        GeometryReader { geo in
-            TabView(selection: $selectedTab) {
-                ForEach(viewModel.saunas.indices, id: \.self) { index in
-                    SaunaView(sauna_id: String(viewModel.saunas[index].id))
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                        .tag(index)
-                }
+        TabView(selection: $selectedTab) {
+            ForEach(viewModel.saunas.indices, id: \.self) { index in
+                SaunaView(sauna_id: String(viewModel.saunas[index].id))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    .tag(index)
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .ignoresSafeArea()
         
         
