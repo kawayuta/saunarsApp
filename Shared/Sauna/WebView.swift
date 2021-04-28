@@ -64,8 +64,12 @@ struct WebView: UIViewRepresentable {
         // スワイプで画面遷移できるようにする
         webView.allowsBackForwardNavigationGestures = true
         
-        let url = URL(string: urlString)!
-        let request = URLRequest(url: url)
-        webView.load(request)
+        if urlString != "" {
+            let url = URL(string: urlString)
+            if url != nil {
+                let request = URLRequest(url: url!)
+                webView.load(request)
+            }
+        }
     }
 }

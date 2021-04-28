@@ -33,12 +33,9 @@ struct incrementalSearchFieldView: View {
     
     var body: some View {
         VStack {
-            ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-                searchTextField
-                searchResultView
-                    .padding(EdgeInsets(top: 60, leading: 0, bottom: 0, trailing: 0))
-            }
-        }
+            searchTextField
+            searchResultView.frame(height: 485)
+        }.ignoresSafeArea()
     }
     
     var searchTextField: some View {
@@ -81,7 +78,7 @@ struct incrementalSearchFieldView: View {
                 }
                 
             }
-        }.frame(height: 80)
+        }.frame(height: 45)
     }
     
     var searchResultView: some View {

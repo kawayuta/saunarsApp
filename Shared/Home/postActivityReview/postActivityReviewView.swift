@@ -93,6 +93,6 @@ struct postActivityReviewView: View {
                 }
             }
         }
-        .navigationBarHidden(true)
+        .navigationBarHidden(true).ignoresSafeArea()
     }
 }

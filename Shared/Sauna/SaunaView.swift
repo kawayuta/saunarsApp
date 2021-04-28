@@ -7,52 +7,60 @@
 
 import SwiftUI
 import SwiftUIPager
+import SwiftUIX
+import FeedKit
 
 struct SaunaView: View {
-    @ObservedObject var viewModel: SaunaViewModel
+    @StateObject var viewModel: SaunaViewModel
     
     @State private var selectedRolesTab: Int = 0
     @State var selectedRoomsTab: Int = 0
+    @State var selectedMain: Int = 0
     
     @State private var loaded: Bool = false
     @StateObject var page: Page = .first()
     var items = Array(0..<10)
     let mainColor = Color.Neumorphic.main
     @State var openWebVisible: Bool = false
+    @State var openInfoWebVisible: Bool = false
+    @State var itemWebUrl: String = ""
     
     init(sauna_id: String) {
-        viewModel = SaunaViewModel(sauna_id: sauna_id)
+        _viewModel = StateObject(wrappedValue: SaunaViewModel(sauna_id: sauna_id))
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-                if let sauna = viewModel.sauna {
-                        ScrollView (.vertical) {
-                            let image_url = sauna.image.url
-                            VStack(alignment: .leading, spacing: 0) {
-                                URLImageView("\(API.init().imageUrl)\(String(describing: image_url))")
-                                    .aspectRatio(contentMode: .fill)
-                                headerView.foregroundColor(Color.black)
-                                WentButtonView(viewModel: .init(mode: .went, sauna_id: String(sauna.id)))
-//                                ReviewChartView()
-                                rooms
-                                rolesAndAmenities
-                                fundamentalInformation
-                                if sauna.hp != "" { openWeb }
-                            }
-                            .padding(EdgeInsets(top:0, leading: 0, bottom: 70, trailing: 0))
-                        }
-                        .background(RoundedRectangle(cornerRadius: 0).fill(mainColor).softOuterShadow())
-                        .sheet(isPresented: $openWebVisible) {
-                            WebView(urlString: sauna.hp)
-                        }
+            if let sauna = viewModel.sauna {
+                ScrollView (.vertical) {
+                    let image_url = sauna.image.url
+                    VStack(alignment: .leading, spacing: 0) {
+                        URLImageView("\(API.init().imageUrl)\(String(describing: image_url))")
+                            .aspectRatio(contentMode: .fill)
+                            .frame(maxHeight: 250)
+                            .clipped()
+                        headerView.foregroundColor(Color.black)
 
+                        mainBody
+                    }
+                    .padding(EdgeInsets(top:0, leading: 0, bottom: 30, trailing: 0))
+                }.ignoresSafeArea()
+                .background(RoundedRectangle(cornerRadius: 0).fill(mainColor))
+                .sheet(isPresented: $openWebVisible) {
+                    WebView(urlString: sauna.hp)
                 }
+                .sheet(isPresented: $openInfoWebVisible) {
+                    WebView(urlString: itemWebUrl)
+                }
+            }
         }
         .ignoresSafeArea()
-        .background(RoundedRectangle(cornerRadius: 0).fill(mainColor).softOuterShadow())
+        .background(RoundedRectangle(cornerRadius: 0).fill(mainColor))
         .onAppear() {
-            if !loaded { viewModel.fetchSauna(); loaded = true }
+            viewModel.fetchSauna()
+            if !loaded {
+                loaded = true
+            }
         }
         
     }
@@ -60,6 +68,151 @@ struct SaunaView: View {
 
 
 extension SaunaView {
+    
+    var mainBody: some View {
+        
+        VStack {
+            if viewModel.sauna != nil {
+                if viewModel.atomFeed == nil && viewModel.rssFeed == nil && viewModel.jsonFeed == nil {
+                } else {
+                    Picker("", selection: $selectedMain) {
+                        Text("施設情報").tag(0)
+                        Text("お知らせ").tag(1)
+                    }.pickerStyle(SegmentedPickerStyle())
+                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
+                }
+                
+                if selectedMain == 0 { main }
+                else { information }
+            }
+        }
+    }
+    
+    
+    var main: some View {
+        VStack {
+            if let sauna = viewModel.sauna {
+                
+                Rectangle().foregroundColor(Color(hex:"ddd")).frame( height: 1)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
+                HStack(alignment: .top) {
+                    ReviewChartView(viewModel: viewModel)
+                    WentButtonView(viewModel: .init(mode: .went, sauna_id: String(sauna.id)))
+                }.frame(height: 200)
+                rooms
+                rolesAndAmenities
+                fundamentalInformation
+                HStack { Spacer(); if sauna.hp != "" { openWeb } }
+            }
+        }
+    }
+    
+    var information: some View {
+        VStack {
+            feedAtom
+            feedRss
+            feedJson
+        }
+    }
+    
+}
+
+extension SaunaView {
+    
+    func strValueOptionalCheck(text: String?) -> String { // Defining the function
+        guard let text = text else { return "" }
+        if text != "" { return text }
+        else { return "" }
+    }
+    
+    var feedAtom: some View {
+        VStack(alignment: .leading) {
+            if let feed = viewModel.atomFeed, let items = feed.entries {
+                LazyVGrid(columns: [GridItem(.flexible())], alignment: .leading, spacing: 10) {
+                    ForEach(items.indices, id: \.self) { index in
+                        VStack(alignment: .leading) {
+                            
+                            Rectangle().foregroundColor(Color(hex:"ddd")).frame( height: 1)
+                                .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                            Text(items[index].title!).font(.title3, weight: .bold)
+                                .padding(EdgeInsets(top:0, leading: 0, bottom: 1, trailing: 0))
+                            Text(strValueOptionalCheck(text: items[index].summary!.value))
+                                .lineLimit(2)
+                                .font(.subheadline)
+                        }.onTapGesture {
+                            if items[index].links?.first?.attributes?.href != "" {
+                                itemWebUrl = (items[index].links?.first?.attributes?.href)!
+                                DispatchQueue.main.async {
+                                    openInfoWebVisible.toggle()
+                                }
+                            }
+                        }
+                        .padding(EdgeInsets(top:5, leading: 15, bottom: 0, trailing: 15))
+                    }
+                }
+            }
+        }
+    }
+    
+    var feedRss: some View {
+        VStack(alignment: .leading) {
+            if let feed = viewModel.rssFeed, let items = feed.items {
+                LazyVGrid(columns: [GridItem(.flexible())], alignment: .leading, spacing: 10) {
+                    ForEach(items.indices, id: \.self) { index in
+                        VStack(alignment: .leading) {
+                            
+                            Rectangle().foregroundColor(Color(hex:"ddd")).frame( height: 1)
+                                .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                            Text(items[index].title!).font(.title3, weight: .bold)
+                                .padding(EdgeInsets(top:0, leading: 0, bottom: 1, trailing: 0))
+                            Text(items[index].description!).font(.subheadline)
+                                .lineLimit(2)
+                        }.onTapGesture {
+                            if items[index].link != "" {
+                                itemWebUrl = items[index].link!
+                                DispatchQueue.main.async {
+                                    openInfoWebVisible.toggle()
+                                }
+                            }
+                        }
+                        .padding(EdgeInsets(top:5, leading: 15, bottom: 0, trailing: 15))
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    var feedJson: some View {
+        VStack(alignment: .leading) {
+            if let feed = viewModel.jsonFeed, let items = feed.items  {
+                LazyVGrid(columns: [GridItem(.flexible())], alignment: .leading, spacing: 10) {
+                    ForEach(items.indices, id: \.self) { index in
+                        VStack(alignment: .leading) {
+                            
+                            Rectangle().foregroundColor(Color(hex:"ddd")).frame( height: 1)
+                                .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                            Text(items[index].title!).font(.title3, weight: .bold)
+                                .padding(EdgeInsets(top:0, leading: 0, bottom: 1, trailing: 0))
+                            if let summary = items[index].summary {
+                                Text(summary.description).font(.subheadline)
+                                    .lineLimit(2)
+                            }
+                        }.onTapGesture {
+                            if items[index].url != "" {
+                                itemWebUrl = items[index].url!
+                                DispatchQueue.main.async {
+                                    openInfoWebVisible.toggle()
+                                }
+                            }
+                        }
+                        .padding(EdgeInsets(top:5, leading: 15, bottom: 0, trailing: 15))
+                    }
+                }
+            }
+        }
+    }
+    
     var openWeb: some View {
         Button(action: {
             let impactMed = UIImpactFeedbackGenerator(style: .medium)
@@ -185,7 +338,7 @@ extension SaunaView {
                     .font(.title3, weight: .bold)
                     .foregroundColor(Color.black)
                 
-                LazyVGrid(columns: [GridItem(.fixed(70)), GridItem(.flexible())], alignment: .leading, spacing: 10) {
+                LazyVGrid(columns: [GridItem(.fixed(50)), GridItem(.flexible())], alignment: .leading, spacing: 10) {
                     Text("施設名:")
                         .font(.body, weight: .bold)
                         .frame(alignment: .leading)
@@ -250,7 +403,7 @@ extension SaunaView {
                 }
                 
 
-                Rectangle().foregroundColor(Color(hex:"eff2f5")).frame(height: 1)
+                Rectangle().foregroundColor(Color(hex:"ddd")).frame(height: 1)
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
             }
     }

@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-saucialApp (iOS)/Pods-saucialApp (iOS)-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework

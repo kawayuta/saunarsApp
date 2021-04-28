@@ -23,6 +23,7 @@ struct Saunas: Codable, Identifiable {
     let amenities : [Amenities]
     let latitude: Double?
     let longitude: Double?
+    let feed: String?
 }
 
 struct Images: Codable {
@@ -105,6 +106,8 @@ struct Sauna: Codable, Identifiable {
     let amenities : [Amenities]
     let latitude: Double?
     let longitude: Double?
+    let reviews: [Review]
+    let feed: String?
 }
 
 

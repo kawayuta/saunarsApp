@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PartialSheet
+import SwiftUIX
 
 struct SaunasView: View {
     @StateObject var viewModel: MapViewModel
@@ -21,6 +22,14 @@ struct SaunasView: View {
     
     var body: some View {
         
+//        PaginationView(axis: .horizontal) {
+//            ForEach(viewModel.saunas.indices, id: \.hashValue) { index in
+//                SaunaView(sauna_id: String(viewModel.saunas[index].id))
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+//                    .tag(index).ignoresSafeArea()
+//            }
+//        }
+//        .currentPageIndex($selectedTab)
         TabView(selection: $selectedTab) {
             ForEach(viewModel.saunas.indices, id: \.self) { index in
                 SaunaView(sauna_id: String(viewModel.saunas[index].id))

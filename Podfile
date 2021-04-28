@@ -10,6 +10,7 @@ target 'saucialApp (iOS)' do
   pod 'Firebase/Analytics'
   pod 'Siren'
   pod 'Charts'
+  pod 'FeedKit', '~> 9.0'
 end
 
 target 'saucialApp (macOS)' do

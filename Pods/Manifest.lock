@@ -2,6 +2,7 @@ PODS:
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
+  - FeedKit (9.1.2)
   - Firebase/Analytics (7.10.0):
     - Firebase/Core
   - Firebase/Core (7.10.0):
@@ -75,6 +76,7 @@ PODS:
 
 DEPENDENCIES:
   - Charts
+  - FeedKit (~> 9.0)
   - Firebase/Analytics
   - Google-Mobile-Ads-SDK
   - Siren
@@ -82,6 +84,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Charts
+    - FeedKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -98,6 +101,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  FeedKit: 71653273ab08e618cd6fd1301ca08fc02dca6a9e
   Firebase: fffddd0bab8677d07376538365faa93ff3889b39
   FirebaseAnalytics: 4641d7ae4220174f6ca5626163ffc5de2e90391e
   FirebaseCore: ec566d917b2195fc2610aeb148dae99f57a788f9
@@ -112,6 +116,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Siren: de768099aff1f1c9acda4247064788a4940b4bf3
 
-PODFILE CHECKSUM: 80309333e095bb505f8a2e08ac011cfa443e5b5f
+PODFILE CHECKSUM: 063bf73fe0c1978e8bf8978f6aa3577b1eeb3f39
 
 COCOAPODS: 1.10.1

@@ -86,7 +86,7 @@ struct MyPageView: View {
                         ForEach(user.activities.indices, id: \.self) { index in
                             VStack {
                                 HStack(alignment: .top) {
-                                    URLImageView("\(API.init().imageUrl)\(user.activities_saunas[index].image.url)")
+                                    URLImageViewSta("\(API.init().imageUrl)\(user.activities_saunas[index].image.url)")
                                         .frame(width: 80, height: 80)
                                         .aspectRatio(contentMode: .fill)
                                     HStack(alignment: .top) {

@@ -51,7 +51,7 @@ struct searchView: View {
                 .font(.title3)
             .background(RoundedRectangle(cornerRadius: 30).fill(mainColor)
                             .softInnerShadow(RoundedRectangle(cornerRadius: 30),
-                                             darkShadow: .black,
+                                             darkShadow: .gray,
                                              lightShadow: .white,
                                              spread: 0.05, radius: 2)
                             )
