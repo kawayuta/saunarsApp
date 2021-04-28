@@ -46,12 +46,6 @@ struct SaunaView: View {
                     .padding(EdgeInsets(top:0, leading: 0, bottom: 30, trailing: 0))
                 }.ignoresSafeArea()
                 .background(RoundedRectangle(cornerRadius: 0).fill(mainColor))
-                .sheet(isPresented: $openWebVisible) {
-                    WebView(urlString: sauna.hp)
-                }
-                .sheet(isPresented: $openInfoWebVisible) {
-                    WebView(urlString: itemWebUrl)
-                }
             }
         }
         .ignoresSafeArea()
@@ -152,6 +146,9 @@ extension SaunaView {
                 }
             }
         }
+        .sheet(isPresented: $openInfoWebVisible) {
+            WebView(urlString: itemWebUrl)
+        }
     }
     
     var feedRss: some View {
@@ -180,6 +177,9 @@ extension SaunaView {
                 }
                 
             }
+        }
+        .sheet(isPresented: $openInfoWebVisible) {
+            WebView(urlString: itemWebUrl)
         }
     }
     
@@ -211,6 +211,9 @@ extension SaunaView {
                 }
             }
         }
+        .sheet(isPresented: $openInfoWebVisible) {
+            WebView(urlString: itemWebUrl)
+        }
     }
     
     var openWeb: some View {
@@ -229,6 +232,11 @@ extension SaunaView {
                             Text("公式サイト")
                         }
         })
+        .sheet(isPresented: $openWebVisible) {
+            if let sauna = viewModel.sauna {
+                WebView(urlString: sauna.hp)
+            }
+        }
         .frame(width: 130, height: 50)
         .background(RoundedRectangle(cornerRadius: 20).fill(mainColor).softOuterShadow())
         .padding(EdgeInsets(top:30, leading: 15, bottom: 0, trailing: 15))
