@@ -15,7 +15,9 @@ final class FirebaseAnalyticsTracker {
     }
 
     func sendEventLog(_ event: Event, parameters: [String: Any] = [:]) {
-        Analytics.logEvent(event.rawValue, parameters: parameters)
+        if API.init().host == API.HostType.production {
+            Analytics.logEvent(event.rawValue, parameters: parameters)
+        }
     }
 
     enum UserProperty: String {
@@ -23,7 +25,9 @@ final class FirebaseAnalyticsTracker {
     }
 
     func setUserProperty(key: UserProperty, value: String) {
-        Analytics.setUserProperty(value, forName: key.rawValue)
+        if API.init().host == API.HostType.production {
+            Analytics.setUserProperty(value, forName: key.rawValue)
+        }
     }
 }
 

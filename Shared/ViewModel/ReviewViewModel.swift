@@ -35,6 +35,7 @@ final class ReviewViewModel: ObservableObject {
     @Published var selectedRestColumn = 10
     @Published var selectedRestRow = 3
     @Published var selectSaunaTitle = ""
+    @Published var selectedImages:[UIImage] = []
     
     
     @Published var paramsCleanlinessValue: Int = 3
@@ -50,11 +51,14 @@ final class ReviewViewModel: ObservableObject {
     @Published var paramsRestTime: Int = 0
     @Published var paramsRestCount: Int = 0
     @Published var paramsTextArea:String = ""
+    @Published var paramsImages:[String] = []
     
     @Published var saunaRoutineValideteState: Bool = true
     @Published var mizuRoutineValideteState: Bool = true
     @Published var restRoutineValideteState: Bool = true
     @Published var textAreaValidateState: Bool = true
+    @Published var imagesValidateState: Bool = true
+    
     
     init(mapViewModel: MapViewModel) {
         _mapViewModel = StateObject(wrappedValue: mapViewModel)
@@ -67,6 +71,14 @@ final class ReviewViewModel: ObservableObject {
             textAreaValidateState = true
         } else {
             textAreaValidateState = false
+        }
+    }
+    
+    func imagesValidate() {
+        if paramsImages.count <= 2 {
+            imagesValidateState = true
+        } else {
+            imagesValidateState = false
         }
     }
     
@@ -211,6 +223,7 @@ final class ReviewViewModel: ObservableObject {
     func postReview(completion: @escaping(Bool) -> Void) {
         let current_user_id = userDefaults.integer(forKey: "current_id")
         let url = URL(string: "\(API.init().host)/reviews.json")!
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         let body = ReviewRequest(sauna_id: paramsSaunaId,
@@ -265,10 +278,21 @@ final class ReviewViewModel: ObservableObject {
         let url = URL(string: "\(API.init().host)/activities.json")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        let compressionQuality: CGFloat = 0.8
+        selectedImages.forEach {
+            let image = $0
+            let imageData = image.jpegData(compressionQuality: compressionQuality)
+            if let imgData = imageData {
+                let img = imgData.base64EncodedString()
+                paramsImages.append(img)
+            }
+        }
+        
         let body =
         ActivityReviewRequest(sauna_id: paramsSaunaId,
                             user_id: current_user_id,
                             image: "",
+                            images: paramsImages,
                             body: paramsTextArea,
                             sauna_time: paramsSaunaTime,
                             sauna_count: paramsSaunaCount,

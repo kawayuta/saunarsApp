@@ -63,7 +63,35 @@ struct Roles: Codable, Identifiable {
     var parking_area: Bool
     var ganbanyoku: Bool
     var tattoo: Bool
+ 
+    func trueCount() -> Int {
+        var count = 0
+        if loyly == true { count += 1 }
+        if auto_loyly == true { count += 1 }
+        if self_loyly == true { count += 1 }
+        if free_time == true { count += 1 }
+        if capsule_hotel == true { count += 1 }
+        if rest_space == true { count += 1 } //
+        if in_rest_space == true { count += 1 } //
+        if eat_space == true { count += 1 }
+        if wifi == true { count += 1 }
+        if power_source == true { count += 1 }
+        if work_space == true { count += 1 }
+        if manga == true { count += 1 }
+        if body_care == true { count += 1 }
+        if body_towel == true { count += 1 }
+        if water_dispenser == true { count += 1 }
+        if washlet == true { count += 1 }
+        if credit_settlement == true { count += 1 }
+        if parking_area == true { count += 1 }
+        if ganbanyoku == true { count += 1 }
+        if gaikiyoku == true { count += 1 } //
+        if tattoo == true { count += 1 }
+        
+        return count
+    }
 }
+
 
 struct Amenities: Codable, Identifiable {
     var id: Int
@@ -84,7 +112,29 @@ struct Amenities: Codable, Identifiable {
     var emulsion: Bool
     var makeup_remover: Bool
     var cotton_swab: Bool
-    
+ 
+    func trueCount() -> Int {
+        var count = 0
+        if shampoo == true { count += 1 }
+        if conditioner == true { count += 1 }
+        if body_soap == true { count += 1 }
+        if face_soap == true { count += 1 }
+        if razor == true { count += 1 }
+        if toothbrush == true { count += 1 }
+        if nylon_towel == true { count += 1 }
+        if hairdryer == true { count += 1 }
+        if face_towel_unlimited == true { count += 1 }
+        if bath_towel_unlimited == true { count += 1 }
+        if sauna_underpants_unlimited == true { count += 1 }
+        if sauna_mat_unlimited == true { count += 1 }
+        if flutterboard_unlimited == true { count += 1 }
+        if toner == true { count += 1 }
+        if emulsion == true { count += 1 }
+        if makeup_remover == true { count += 1 }
+        if cotton_swab == true { count += 1 }
+        
+        return count
+    }
 }
 
 
@@ -108,6 +158,7 @@ struct Sauna: Codable, Identifiable {
     let longitude: Double?
     let reviews: [Review]
     let feed: String?
+    let holiday: String?
 }
 
 

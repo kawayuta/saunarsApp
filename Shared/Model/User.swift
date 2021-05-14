@@ -7,14 +7,41 @@
 
 import Foundation
 
+struct UserUpdateRequest: Codable {
+    let avatar: String
+    let name: String
+    let username: String
+}
+
+struct UserRegisterRequest: Codable {
+    let username: String
+    let email: String
+    let password: String
+    let password_confirmation: String
+    let current_password: String
+}
+
+struct UserUpdatePassWordRequest: Codable {
+    let password: String
+    let password_confirmation: String
+}
+
 struct User: Codable {
     let id: Int
     let username: String
+    let name: String?
+    let email: String
+    let avatar: Avatars?
     let wents: [WentSauna]
     let activities: [Activity]
     let activities_reviews: [Review]
     let activities_saunas: [ReviewSauna]
+    let activities_month: [Activity]
 }
+struct Avatars: Codable {
+    var url: String?
+}
+
 
 struct WentSauna: Codable, Identifiable {
     let id: Int

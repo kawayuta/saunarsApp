@@ -13,6 +13,7 @@ import GoogleMobileAds
 import AppTrackingTransparency
 import AdSupport
 import Firebase
+import Lottie
 
 
 @main
@@ -23,10 +24,32 @@ struct saucialAppApp: App {
     #endif
     
     private let userDefaults = UserDefaults.standard
+    @State var LoginCheck: Bool = false
+    @ObservedObject var viewModel = AuthViewModel(mode: .signup)
+    @StateObject var appModel = SaunaviMessageViewModel()
     var body: some Scene {
         WindowGroup {
-            SaunaMapView().environmentObject(PartialSheetManager()).environmentObject(Keyboard())
-                .sendEventLog(.lanch)
+            
+            VStack {
+                if LoginCheck {
+                    HomeView().environmentObject(Keyboard()).environmentObject(appModel)
+                        .environmentObject(MapViewModel())
+                        .environmentObject(RecommendViewModel())
+                        .environmentObject(TimelineViewModel())
+                        .environmentObject(UserViewModel())
+                        .sendEventLog(.lanch)
+                } else {
+                    LoadingAnimatedView(LoginCheck: $LoginCheck)
+                        .frame(width: UIScreen.main.bounds.height / 2)
+                }
+                
+            }.onAppear() {
+                viewModel.autoSignUpIn(completion: { completion in
+                    if completion {
+                        LoginCheck = true
+                    }
+                })
+            }
         }
     }
 }
@@ -34,7 +57,6 @@ struct saucialAppApp: App {
 #if os(iOS)
 class AppDelegate: NSObject, UIApplicationDelegate {
     
-    @ObservedObject var viewModel = AuthViewModel(mode: .signup)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         let siren = Siren.shared
@@ -51,12 +73,44 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             GADMobileAds.sharedInstance().start(completionHandler: nil)
         })
         
-        
-            viewModel = AuthViewModel(mode: .mypage)
-            viewModel.autoSignUpIn(completion: { signUpCompletion in
-            })
 
         return true
     }
+    
 }
 #endif
+
+
+struct LoadingAnimatedView: UIViewRepresentable {
+    @Binding var LoginCheck: Bool
+    var name = "load"
+        var loopMode: LottieLoopMode = .loop
+    
+    init (LoginCheck: Binding<Bool>) {
+        _LoginCheck = LoginCheck
+    }
+    func makeUIView(context: UIViewRepresentableContext<LoadingAnimatedView>) -> UIView {
+           let view = UIView(frame: .zero)
+
+           let animationView = AnimationView()
+           let animation = Animation.named(name)
+           animationView.animation = animation
+           animationView.contentMode = .scaleAspectFit
+           animationView.loopMode = loopMode
+           animationView.play() { (status) in
+                print(status)
+           }
+
+           animationView.translatesAutoresizingMaskIntoConstraints = false
+           view.addSubview(animationView)
+           NSLayoutConstraint.activate([
+               animationView.heightAnchor.constraint(equalTo: view.heightAnchor),
+               animationView.widthAnchor.constraint(equalTo: view.widthAnchor)
+           ])
+
+           return view
+       }
+
+       func updateUIView(_ uiView: UIViewType, context: Context) {
+       }
+}

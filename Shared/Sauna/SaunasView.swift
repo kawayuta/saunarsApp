@@ -10,14 +10,15 @@ import PartialSheet
 import SwiftUIX
 
 struct SaunasView: View {
-    @StateObject var viewModel: MapViewModel
+    let mainColor = Color.Neumorphic.main
+    @Binding var saunas: [Sauna]
     @State private var selectedRoomsTab: Int = 0
     @State private var selectedRolesTab: Int = 0
     @State var selectedTab: Int = UserDefaults.standard.integer(forKey: "selectTabSaunaView")
     @State var selectTabIndex: Int = 0
 
-    init(viewModel: MapViewModel) {
-        _viewModel =  StateObject(wrappedValue: viewModel)
+    init(saunas: Binding<[Sauna]>) {
+        _saunas = saunas
     }
     
     var body: some View {
@@ -31,8 +32,8 @@ struct SaunasView: View {
 //        }
 //        .currentPageIndex($selectedTab)
         TabView(selection: $selectedTab) {
-            ForEach(viewModel.saunas.indices, id: \.self) { index in
-                SaunaView(sauna_id: String(viewModel.saunas[index].id))
+            ForEach(saunas.indices, id: \.self) { index in
+                SaunaView(sauna_id: String(saunas[index].id))
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     .tag(index)
             }

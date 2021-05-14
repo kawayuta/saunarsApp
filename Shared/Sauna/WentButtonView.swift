@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct WentButtonView: View {
     
@@ -24,12 +25,15 @@ struct WentButtonView: View {
                 viewModel.state.toggle()
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
+                if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    SKStoreReviewController.requestReview(in: scene)
+                }
             }, label: {
-                Text(viewModel.state ? "行きたい済み" : "行きたい！")
+                Text(viewModel.state ? "イキタイ済" : "イキタイ！")
                     .font(.title3)
             })
             .frame(maxWidth: 150, maxHeight: 50, alignment: .center)
-            .background(RoundedRectangle(cornerRadius: 15).fill(viewModel.state ? .blue : mainColor).softOuterShadow())
+            .background(RoundedRectangle(cornerRadius: 15).fill(viewModel.state ? .blue : Color.white).softOuterShadow())
             .overlay(RoundedRectangle(cornerRadius: 15).stroke(viewModel.state ? .white : Color.blue, lineWidth: 1))
             .padding(EdgeInsets(top:0, leading: 15, bottom: 10, trailing: 15))
             .foregroundColor(viewModel.state ? .white : .blue)

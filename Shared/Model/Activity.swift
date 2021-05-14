@@ -12,6 +12,7 @@ struct ActivityReviewRequest: Codable {
     let sauna_id: Int
     let user_id: Int
     let image: String?
+    let images: [String]?
     let body: String
     let sauna_time: Int
     let sauna_count: Int
@@ -32,10 +33,12 @@ struct Activity: Codable, Identifiable {
     let id: Int
     let body: String
     let image: String?
+    let images: [Images]?
     let sauna_time: Int
     let sauna_count: Int
     let mizuburo_time: Int
     let mizuburo_count: Int
     let rest_time: Int
     let rest_count: Int
+    let created_at: String?
 }

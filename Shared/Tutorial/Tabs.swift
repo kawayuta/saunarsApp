@@ -32,24 +32,27 @@ struct Tabs: View {
                                 VStack(spacing: 0) {
                                     HStack {
                                         // Image
-                                        AnyView(tabs[row].icon)
-                                            .foregroundColor(.white)
-                                            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
+//                                        AnyView(tabs[row].icon)
+//                                            .foregroundColor(.white)
+//                                            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
 
                                         // Text
                                         Text(tabs[row].title)
                                             .font(Font.system(size: 15, weight: .semibold))
-                                            .foregroundColor(Color.black)
-                                            .padding(EdgeInsets(top: 10, leading: 3, bottom: 10, trailing: 15))
+                                            .foregroundColor(selectedTab == row ? Color.blue : Color(hex:"44556b"))
+                                            .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                                     }
-                                    .frame(width: fixed ? (geoWidth / CGFloat(tabs.count)) : .none, height: 52)
+                                    .frame(width: fixed ? (geoWidth / CGFloat(tabs.count) - 6): .none, height: 52)
                                     // Bar Indicator
-                                    Rectangle().fill(selectedTab == row ? Color.black : Color.clear)
-                                        .frame(height: 3)
+//                                    Rectangle().fill(selectedTab == row ? Color.white : Color.clear)
+//                                        .frame(height: 3)
                                 }.fixedSize()
                             })
-                                .accentColor(Color.white)
-                                .buttonStyle(PlainButtonStyle())
+                            .background(RoundedCorners(tl: 10, tr: 10, bl: 0, br: 0)
+                                            .fill(selectedTab == row ? Color.white : Color(hex:"E9EFF4")))
+                            .accentColor(Color.white)
+                            .buttonStyle(PlainButtonStyle())
+                            .padding(EdgeInsets(top: 0, leading: 3, bottom: 0, trailing: 3))
                         }
                     }
                     .onChange(of: selectedTab) { target in

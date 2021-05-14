@@ -14,6 +14,7 @@ import Cluster
 
 final class MapViewModel: NSObject, ObservableObject {
     private let manager = CLLocationManager()
+    @EnvironmentObject var saunaviViewModel: SaunaviMessageViewModel
     @Published var clusterManager: ClusterManager = { [self] in
         let manager = ClusterManager()
         manager.maxZoomLevel = 20
@@ -22,7 +23,7 @@ final class MapViewModel: NSObject, ObservableObject {
         return manager
     }()
     
-    @Published var saunas:[Saunas] = []
+    @Published var saunas:[Sauna] = []
     @Published var sauna_tags:[SaunaTags] = []
     // 初期表示の座標.
     @Published var region = MKCoordinateRegion(
@@ -33,6 +34,7 @@ final class MapViewModel: NSObject, ObservableObject {
     
     
     @Published var keyword: String = ""
+    @Published var locationName: String = ""
     
     @Published var buildings: [Building] = []
     var builds: [Building] = []
@@ -43,9 +45,15 @@ final class MapViewModel: NSObject, ObservableObject {
     private var cancellable = Set<AnyCancellable>()
     
     var initCurrentRegion: Bool = false
+    
+    @Published var resultSaunasCardVisible:Bool = false
     @Published var currentRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 35.6586, longitude: 139.7454),
         span: MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15))
+    
+    
+    @Published var regionApply: Bool = false
+    
     
     override init() {
         super.init()
@@ -53,6 +61,7 @@ final class MapViewModel: NSObject, ObservableObject {
         
         
     }
+    
     
     /// 位置情報のリクエスト.
     func requestUserLocation() {
@@ -107,6 +116,8 @@ extension MapViewModel: CLLocationManagerDelegate {
         if !initCurrentRegion {
             currentRegion = region
             initCurrentRegion = true
+            regionApply = true
+            locationWord(location: location)
         }
         withAnimation {
             region.center = location.coordinate
@@ -127,9 +138,9 @@ extension MapViewModel: CLLocationManagerDelegate {
             }
             if let place = places?.first?.administrativeArea {
                 if place.contains("県") || place.contains("府") || place.contains("都") {
-                    self.keyword = String(place.dropLast())
+                    self.locationName = String(place.dropLast())
                 } else {
-                    self.keyword = place
+                    self.locationName = place
                 }
 
             }
@@ -137,7 +148,7 @@ extension MapViewModel: CLLocationManagerDelegate {
         }
     }
     
-    func buildMapCoordinate(saunas: [Saunas], writeRegion: Bool) {
+    func buildMapCoordinate(saunas: [Sauna], writeRegion: Bool) {
         buildings.removeAll()
         builds.removeAll()
         clusterManager.removeAll()
@@ -260,9 +271,10 @@ extension MapViewModel: CLLocationManagerDelegate {
                     if let httpResponse = response as? HTTPURLResponse {
                         if httpResponse.statusCode == 200 {
                             let decoder = JSONDecoder()
-                            let json = try decoder.decode([Saunas].self, from: data)
+                            let json = try decoder.decode([Sauna].self, from: data)
                             DispatchQueue.main.async {
                                 self.saunas = json
+                                resultSaunasCardVisible = saunas.count > 0 ? true : false
                                 buildMapCoordinate(saunas: self.saunas, writeRegion: writeRegion)
                                 keyword = ""
                             }

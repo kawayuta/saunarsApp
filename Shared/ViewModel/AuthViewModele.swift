@@ -48,10 +48,25 @@ extension AuthViewModel {
     
     func autoSignUpIn(completion: @escaping(Bool) -> Void) {
         if let udid = UIDevice.current.identifierForVendor?.uuidString {
-            username = ""
-            email = "\(udid)@saunavi.app.com"
-            password = udid
-            confilmPassword = udid
+            
+            print(udid)
+            if self.userDefaults.string(forKey: "email") == nil {
+                username = udid
+                email = "\(udid)@saunavi.app.com"
+                password = udid
+                confilmPassword = udid
+            } else {
+                if !self.userDefaults.string(forKey: "email")!.contains("saunavi.app.com") {
+                    print("ログイン後だお")
+                    email = self.userDefaults.string(forKey: "email")!
+                    password = self.userDefaults.string(forKey: "password")!
+                } else {
+                   username = udid
+                   email = "\(udid)@saunavi.app.com"
+                   password = udid
+                   confilmPassword = udid
+                }
+            }
             
             authSignIn(completion: { [self] signInCompletion in
                 if signInCompletion {
@@ -81,7 +96,37 @@ extension AuthViewModel {
                                     print("もともとあったアカウントでログインしたよ")
                                 } else {
                                     completion(false)
+                                    
                                     print("アカウントあるのにログインできないよ")
+                                    username = udid + "sub"
+                                    email = "\(udid + "sub")@saunavi.app.com"
+                                    password = udid
+                                    confilmPassword = udid
+                                    
+                                    self.authSignUp(completion: { signUpCompletion in
+                                        if signUpCompletion {
+                                            print("無理やりアカウントをつくったお")
+                                            authSignIn(completion: { _signInCompletion in
+                                                if _signInCompletion {
+                                                    completion(true)
+                                                    print("無理やりアカウント作ってログインしたよ")
+                                                } else {
+                                                    completion(false)
+                                                    print("無理やりアカウント作ったのにログインできないよ")
+                                                }
+                                            })
+                                        } else {
+                                            authSignIn(completion: { _signInCompletion in
+                                                if _signInCompletion {
+                                                    completion(true)
+                                                    print("前作った無理やりアカウントでログインしたよ")
+                                                } else {
+                                                    completion(false)
+                                                    print("前作った無理やりアカウントにログインできないよ")
+                                                }
+                                            })
+                                        }
+                                    })
                                 }
                             })
                             
@@ -97,7 +142,7 @@ extension AuthViewModel {
         let url = URL(string: "\(API.init().host)/api/auth")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        let body = AuthRegisterRequest(username: username, email: email, password: password, confilm_password: confilmPassword)
+        let body = AuthRegisterRequest(username: username, email: email, password: password, password_confirmation: confilmPassword)
         
         var headers = request.allHTTPHeaderFields ?? [:]
         headers["Content-Type"] = "application/json"
@@ -149,7 +194,7 @@ extension AuthViewModel {
         let url = URL(string: "\(API.init().host)/api/auth/sign_in")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        let body = AuthRegisterRequest(username: username, email: email, password: password, confilm_password: confilmPassword)
+        let body = AuthRegisterRequest(username: username, email: email, password: password, password_confirmation: confilmPassword)
         
         var headers = request.allHTTPHeaderFields ?? [:]
         headers["Content-Type"] = "application/json"
@@ -160,11 +205,11 @@ extension AuthViewModel {
         headers["uid"] = self.userDefaults.string(forKey: "uid")
         request.allHTTPHeaderFields = headers
         
-        print(headers["access-token"])
-        print(headers["token-type"])
-        print(headers["client"])
-        print(headers["expiry"])
-        print(headers["uid"])
+//        print(headers["access-token"])
+//        print(headers["token-type"])
+//        print(headers["client"])
+//        print(headers["expiry"])
+//        print(headers["uid"])
         let encoder = JSONEncoder()
         do {
             let data = try encoder.encode(body)
@@ -172,7 +217,7 @@ extension AuthViewModel {
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 guard let data = data else { return }
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    _ = try JSONSerialization.jsonObject(with: data, options: [])
                     if let httpResponse = response as? HTTPURLResponse {
                         if httpResponse.statusCode == 200 {
                             

@@ -9,8 +9,8 @@ import Foundation
 
 struct API {
     
-    let host: HostType = .production
-    let imageUrl: imageUrlType = .production
+    let host: HostType = .develop
+    let imageUrl: imageUrlType = .develop
     
     enum HostType: CustomStringConvertible {
         case develop

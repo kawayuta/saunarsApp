@@ -11,7 +11,7 @@ struct AuthRegisterRequest: Codable {
     let username: String
     let email: String
     let password: String
-    let confilm_password: String
+    let password_confirmation: String
 }
 
 
@@ -21,6 +21,10 @@ struct AuthRegisterResponse: Codable {
     let data: [Auth]
 }
 
+struct AuthErrorResponse: Codable {
+    let username: String
+    let email: String
+}
 
 struct AuthResponse: Codable {
 

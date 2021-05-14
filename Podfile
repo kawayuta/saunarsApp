@@ -11,6 +11,12 @@ target 'saucialApp (iOS)' do
   pod 'Siren'
   pod 'Charts'
   pod 'FeedKit', '~> 9.0'
+  pod 'Shuffle-iOS'
+  pod 'SnapKit', '~> 5.0.0'
+  pod 'PopBounceButton'
+  pod 'lottie-ios'
+  pod "SwiftUIRefresh"
+  pod "FSCalendar"
 end
 
 target 'saucialApp (macOS)' do

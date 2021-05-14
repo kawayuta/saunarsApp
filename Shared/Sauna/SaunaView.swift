@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftUIPager
 import SwiftUIX
 import FeedKit
+import PartialSheet
 
 struct SaunaView: View {
     @StateObject var viewModel: SaunaViewModel
@@ -24,6 +25,19 @@ struct SaunaView: View {
     @State var openWebVisible: Bool = false
     @State var openInfoWebVisible: Bool = false
     @State var itemWebUrl: String = ""
+    
+    let tabs_gourmet_and_info: [Tab] = [
+        .init(title: "施設情報"),
+        .init(title: "サ活グルメ"),
+        .init(title: "お知らせ"),
+    ]
+    
+    
+    let tabs_gourmet: [Tab] = [
+        .init(title: "施設情報"),
+        .init(title: "サ活グルメ")
+    ]
+    
     
     init(sauna_id: String) {
         _viewModel = StateObject(wrappedValue: SaunaViewModel(sauna_id: sauna_id))
@@ -45,17 +59,24 @@ struct SaunaView: View {
                     }
                     .padding(EdgeInsets(top:0, leading: 0, bottom: 30, trailing: 0))
                 }.ignoresSafeArea()
-                .background(RoundedRectangle(cornerRadius: 0).fill(mainColor))
+//                .background(RoundedRectangle(cornerRadius: 0).fill(mainColor))
             }
         }
         .ignoresSafeArea()
-        .background(RoundedRectangle(cornerRadius: 0).fill(mainColor))
+//        .background(RoundedRectangle(cornerRadius: 0).fill(mainColor))
         .onAppear() {
-            viewModel.fetchSauna()
             if !loaded {
+                viewModel.fetchSauna()
                 loaded = true
             }
         }
+        .addPartialSheet(style: PartialSheetStyle(background: .solid(mainColor),
+                                                          handlerBarColor: Color(UIColor.clear),
+                                                          enableCover: true,
+                                                          coverColor: Color.black.opacity(0.4),
+                                                          blurEffectStyle: nil,
+                                                          cornerRadius: 15, minTopDistance: 0))
+        .environmentObject(PartialSheetManager())
         
     }
 }
@@ -63,20 +84,35 @@ struct SaunaView: View {
 
 extension SaunaView {
     
+    
     var mainBody: some View {
         
-        VStack {
+        VStack(spacing: 0) {
             if viewModel.sauna != nil {
-                if viewModel.atomFeed == nil && viewModel.rssFeed == nil && viewModel.jsonFeed == nil {
+                if viewModel.atomFeed != nil || viewModel.rssFeed != nil || viewModel.jsonFeed != nil {
+                    GeometryReader { geo in
+                        Tabs(tabs: tabs_gourmet_and_info, geoWidth: geo.size.width, selectedTab: $selectedMain)
+                    }.frame(height: 50)
+                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
+                    .background(Color(hex: "E9EFF4"))
+                    .clipped()
+//                    Picker("", selection: $selectedMain) {
+//                        Text("施設情報").tag(0)
+//                        Text("おｑｗ").tag(2)
+//                        Text("お知らせ").tag(1)
+//                    }.pickerStyle(SegmentedPickerStyle())
+//                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
                 } else {
-                    Picker("", selection: $selectedMain) {
-                        Text("施設情報").tag(0)
-                        Text("お知らせ").tag(1)
-                    }.pickerStyle(SegmentedPickerStyle())
-                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
+                    GeometryReader { geo in
+                        Tabs(tabs: tabs_gourmet, geoWidth: geo.size.width, selectedTab: $selectedMain)
+                    }.frame(height: 50)
+                    .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
+                    .background(Color(hex: "E9EFF4"))
+                    .clipped()
                 }
                 
                 if selectedMain == 0 { main }
+                else if selectedMain == 1 { gourmetView }
                 else { information }
             }
         }
@@ -96,8 +132,22 @@ extension SaunaView {
                 rooms
                 rolesAndAmenities
                 fundamentalInformation
-                HStack { Spacer(); if sauna.hp != "" { openWeb } }
+                HStack {
+                    Spacer()
+                    openMap
+                    if sauna.hp != "" { openWeb } }
             }
+        }
+    }
+    
+    var gourmetView: some View {
+        VStack {
+            Rectangle().foregroundColor(Color(hex:"ddd")).frame( height: 1)
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
+            if let sauna = viewModel.sauna {
+                GourmetView(lat: "\(sauna.latitude!)", lng: "\(sauna.longitude!)")
+            }
+            
         }
     }
     
@@ -216,6 +266,42 @@ extension SaunaView {
         }
     }
     
+    var openMap: some View {
+        Button(action: {
+            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+            impactMed.impactOccurred()
+            if let sauna = viewModel.sauna {
+                let latitude = String(sauna.latitude!)
+                let longitude = String(sauna.longitude!)
+                
+                let urlString: String!
+                if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
+                    urlString = "comgooglemaps://?daddr=\(latitude),\(longitude)&directionsmode=walking&zoom=14"
+                } else {
+                    urlString = "http://maps.apple.com/?daddr=\(latitude),\(longitude)&dirflg=w"
+                }
+                if let url = URL(string: urlString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+            
+        }, label: {
+            HStack {
+              Image(systemName: "link")
+                  .resizable()
+                  .aspectRatio(contentMode: .fit)
+                  .frame(width: 22)
+                  .foregroundColor(Color(hex: "44556b"))
+                  .padding(EdgeInsets(top:2, leading: 0, bottom: 0, trailing: 2))
+              Text("マップアプリで開く")
+            }
+        })
+        .frame(width: 180, height: 50)
+        .background(RoundedRectangle(cornerRadius: 20).fill(mainColor).softOuterShadow())
+        .padding(EdgeInsets(top:30, leading: 15, bottom: 0, trailing: 15))
+    }
+    
+    
     var openWeb: some View {
         Button(action: {
             let impactMed = UIImpactFeedbackGenerator(style: .medium)
@@ -270,8 +356,8 @@ extension SaunaView {
                             if let sauna_temperature =  _sauna.sauna_temperature {
                                 VStack {
                                     HStack(alignment: .bottom) {
-                                        Text("\(sauna_temperature)").font(.largeTitle).fontWeight(.bold).foregroundColor(.red)
-                                        Text("℃").font(.title2).fontWeight(.bold).foregroundColor(.red)
+                                        let saunaTemperature = sauna_temperature == 0 ? "情報なし" : "\(sauna_temperature)℃"
+                                        Text("\(saunaTemperature)").font(.largeTitle).fontWeight(.bold).foregroundColor(.red)
                                     }
                                     .padding(1)
                                     Text("サウナ室 温度").font(.headline).fontWeight(.bold).foregroundColor(.red)
@@ -283,8 +369,8 @@ extension SaunaView {
                             if let mizu_temperature =  _sauna.mizu_temperature {
                                 VStack {
                                     HStack(alignment: .bottom) {
-                                        Text("\(mizu_temperature)").font(.largeTitle).fontWeight(.bold).foregroundColor(.blue)
-                                        Text("℃").font(.title2).fontWeight(.bold).foregroundColor(.blue)
+                                        let mizuTemperature = mizu_temperature == 0 ? "情報なし" : "\(mizu_temperature)℃"
+                                        Text("\(mizuTemperature)").font(.largeTitle).fontWeight(.bold).foregroundColor(.blue)
                                     }
                                     .padding(1)
                                     Text("水風呂 温度").font(.headline).fontWeight(.bold).foregroundColor(.blue)
@@ -322,7 +408,9 @@ extension SaunaView {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 22)
                         .foregroundColor(Color(hex: "44556b"))
-                    Text(String(sauna.price)).font(.subheadline)
+                    
+                    let price = sauna.price == 0 ? "情報なし" : String(sauna.price.withComma)
+                    Text(String(price)).font(.title3)
                 }
                 .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 0))
                 HStack {
@@ -334,7 +422,14 @@ extension SaunaView {
                     Text(String(sauna.parking)).font(.subheadline)
                 }
                 .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
+                
             }
+                
+            HStack {
+                Text("定休日：").font(.subheadline, weight: .bold)
+                Text(sauna.holiday!).font(.subheadline)
+            }
+            .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
         }
     }
         .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
@@ -407,7 +502,7 @@ extension SaunaView {
                                     selectedRolesTab = newIndex
                                 })
                                 .frame(width: proxy.size.width, height: min(proxy.size.height, proxy.size.width))
-                    }.frame(minHeight: 250)
+                    }.frame(minHeight: 420)
                 }
                 
 
@@ -421,30 +516,34 @@ extension SaunaView {
         func body(content: Content) -> some View {
             HStack {
                 content
+                Spacer()
+                Text(status ? "○" : "✗")
             }
-            .font(.subheadline, weight: status ? .bold : .regular)
+            .font(.headline, weight: status ? .bold : .regular)
             .foregroundColor(status ? .blue : .gray)
-            .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
+            .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
         }
     }
     
     var roles: some View {
-        VStack {
+        VStack(alignment: .leading) {
             if let sauna = viewModel.sauna?.roles[0] {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
             Group {
                 Text("アウフグース").modifier(SaunaInfoStyle(status: sauna.loyly))
                 Text("セルフロウリュ").modifier(SaunaInfoStyle(status: sauna.self_loyly))
                 Text("オートロウリュ").modifier(SaunaInfoStyle(status: sauna.auto_loyly))
+                Text("外気浴").modifier(SaunaInfoStyle(status: sauna.gaikiyoku))
                 Text("24時間営業").modifier(SaunaInfoStyle(status: sauna.free_time))
                 Text("カプセルホテル").modifier(SaunaInfoStyle(status: sauna.capsule_hotel))
-                Text("休憩スペース").modifier(SaunaInfoStyle(status: sauna.in_rest_space))
+                Text("休憩スペース").modifier(SaunaInfoStyle(status: sauna.rest_space))
+                Text("館内休憩スペース").modifier(SaunaInfoStyle(status: sauna.in_rest_space))
                 Text("食事処").modifier(SaunaInfoStyle(status: sauna.eat_space))
                 Text("WiFi").modifier(SaunaInfoStyle(status: sauna.wifi))
-                Text("電源").modifier(SaunaInfoStyle(status: sauna.power_source))
-                Text("作業スペース").modifier(SaunaInfoStyle(status: sauna.work_space))
             }
             Group {
+                Text("電源").modifier(SaunaInfoStyle(status: sauna.power_source))
+                Text("作業スペース").modifier(SaunaInfoStyle(status: sauna.work_space))
                 Text("漫画").modifier(SaunaInfoStyle(status: sauna.manga))
                 Text("ボディケア").modifier(SaunaInfoStyle(status: sauna.body_care))
                 Text("ボディタオル").modifier(SaunaInfoStyle(status: sauna.body_towel))
@@ -453,6 +552,8 @@ extension SaunaView {
                 Text("クレジット決済").modifier(SaunaInfoStyle(status: sauna.credit_settlement))
                 Text("駐車場").modifier(SaunaInfoStyle(status: sauna.parking_area))
                 Text("岩盤浴").modifier(SaunaInfoStyle(status: sauna.ganbanyoku))
+            }
+            Group {
                 Text("タトゥーOK").modifier(SaunaInfoStyle(status: sauna.tattoo))
             }
             }
@@ -465,7 +566,7 @@ extension SaunaView {
     var amenities: some View {
         VStack {
             if let sauna = viewModel.sauna?.amenities[0] {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
             Group {
                 Text("シャンプー").modifier(SaunaInfoStyle(status: sauna.shampoo))
                 Text("コンディショナー").modifier(SaunaInfoStyle(status: sauna.conditioner))

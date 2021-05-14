@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 
 struct HomeView: View {
@@ -24,28 +25,34 @@ struct HomeView: View {
     
     var body: some View {
         
-        NavigationView {
-                    GeometryReader { geo in
-                        VStack(spacing: 0) {
-                            // Tabs
-                            Tabs(tabs: tabs, geoWidth: geo.size.width, selectedTab: $selectedTab)
-
-                            // Views
-                            TabView(selection: $selectedTab,
-                                    content: {
-                                        SaunaMapView()
-                                            .tag(0)
-                                        LaunchScreenView()
-                                            .tag(1)
-                                    })
-                                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                        }
-                        .foregroundColor(Color(#colorLiteral(red: 0.737254902, green: 0.1294117647, blue: 0.2941176471, alpha: 1)))
-                        .navigationBarTitleDisplayMode(.inline)
-                        .navigationTitle("ホーム")
-                        .ignoresSafeArea()
-                    }
+        TabView(selection: $selectedTab) {
+            NavigationView { SaunaMapView().navigationBarTitle("サウナマップ",displayMode: .inline) }.environmentObject(PartialSheetManager())
+                .environmentObject(SaunaviMessageViewModel())
+                .tabItem {
+                    Image(systemName: "map.fill")
+                    Text("サウナマップ")
                 }
+                .tag(1)
+            NavigationView { SaunaRecommendView().navigationBarTitle("AI厳選（イキタイ！するほど学習するよ）",displayMode: .inline) }.environmentObject(PartialSheetManager())
+                .tabItem {
+                    Image(systemName: "mail.stack.fill")
+                    Text("AI厳選")
+                }
+                .tag(2)
+            
+            NavigationView { TimelineView().navigationBarTitle("みんなのサ活",displayMode: .inline) }.environmentObject(PartialSheetManager())
+                .tabItem {
+                    Image(systemName: "newspaper.fill")
+                    Text("みんなのサ活")
+                }
+                .tag(3)
+            NavigationView { MyPageView().navigationBarTitle("マイページ",displayMode: .inline) }.environmentObject(PartialSheetManager())
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("マイページ")
+                }
+                .tag(4)
+        }
 
     }
 }

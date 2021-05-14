@@ -33,6 +33,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/UserDefaults (~> 7.0)
     - PromisesObjC (~> 1.2)
+  - FSCalendar (2.8.2)
   - Google-Mobile-Ads-SDK (8.3.0):
     - GoogleAppMeasurement (~> 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
@@ -66,20 +67,35 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.3.1):
     - GoogleUtilities/Logger
+  - Introspect (0.1.3)
+  - lottie-ios (3.2.2)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - pop (1.0.12)
+  - PopBounceButton (1.2.2):
+    - pop (~> 1.0)
   - PromisesObjC (1.2.12)
+  - Shuffle-iOS (0.5.0)
   - Siren (5.8.1)
+  - SnapKit (5.0.1)
+  - SwiftUIRefresh (0.0.3):
+    - Introspect (~> 0.1.0)
 
 DEPENDENCIES:
   - Charts
   - FeedKit (~> 9.0)
   - Firebase/Analytics
+  - FSCalendar
   - Google-Mobile-Ads-SDK
+  - lottie-ios
+  - PopBounceButton
+  - Shuffle-iOS
   - Siren
+  - SnapKit (~> 5.0.0)
+  - SwiftUIRefresh
 
 SPEC REPOS:
   trunk:
@@ -90,14 +106,22 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
+    - FSCalendar
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUserMessagingPlatform
     - GoogleUtilities
+    - Introspect
+    - lottie-ios
     - nanopb
+    - pop
+    - PopBounceButton
     - PromisesObjC
+    - Shuffle-iOS
     - Siren
+    - SnapKit
+    - SwiftUIRefresh
 
 SPEC CHECKSUMS:
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
@@ -107,15 +131,23 @@ SPEC CHECKSUMS:
   FirebaseCore: ec566d917b2195fc2610aeb148dae99f57a788f9
   FirebaseCoreDiagnostics: 5662a3823ffcc0acbaa9a21ba5ed302fac634705
   FirebaseInstallations: bf2ec8dbf36ff4c91af6b9a003d15855757680c1
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   Google-Mobile-Ads-SDK: c14f5a63db1414b4ca0ee1539c9f3d700ace96c2
   GoogleAppMeasurement: 1c863b1161fc3c8cf614a7460d1be6a7c262aab3
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
   GoogleUtilities: e1d9ed4e544fc32a93e00e721400cbc3f377200d
+  Introspect: 2be020f30f084ada52bb4387fff83fa52c5c400e
+  lottie-ios: a033bb989eea77d9f99cc4e2bbdd3788229761ad
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  PopBounceButton: 34105a012678222f058f8d2621672724a3d5c9fb
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  Shuffle-iOS: ff33658fb1e5eebd6a4724c156473e63754be9cb
   Siren: de768099aff1f1c9acda4247064788a4940b4bf3
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftUIRefresh: ca6ae2718d25aad5dd68bbf5d2ae36ef6ade98bf
 
-PODFILE CHECKSUM: 063bf73fe0c1978e8bf8978f6aa3577b1eeb3f39
+PODFILE CHECKSUM: a7019199944ef50b2b52c19c418c5619dc66e59a
 
 COCOAPODS: 1.10.1
