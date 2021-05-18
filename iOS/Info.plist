@@ -56,6 +56,10 @@
 	<string>現在地周辺のサウナ情報を表示するには、位置情報を許可してください</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>パーソナライズされた広告配信を行う為に必要です</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>CPFont.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

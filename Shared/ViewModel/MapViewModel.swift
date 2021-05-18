@@ -14,7 +14,6 @@ import Cluster
 
 final class MapViewModel: NSObject, ObservableObject {
     private let manager = CLLocationManager()
-    @EnvironmentObject var saunaviViewModel: SaunaviMessageViewModel
     @Published var clusterManager: ClusterManager = { [self] in
         let manager = ClusterManager()
         manager.maxZoomLevel = 20
@@ -28,7 +27,7 @@ final class MapViewModel: NSObject, ObservableObject {
     // 初期表示の座標.
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 35.6586, longitude: 139.7454),
-        span: MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15))
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     
     @Published var trackingMode: MapUserTrackingMode = .follow
     
@@ -49,7 +48,7 @@ final class MapViewModel: NSObject, ObservableObject {
     @Published var resultSaunasCardVisible:Bool = false
     @Published var currentRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 35.6586, longitude: 139.7454),
-        span: MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15))
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     
     
     @Published var regionApply: Bool = false
@@ -121,11 +120,11 @@ extension MapViewModel: CLLocationManagerDelegate {
         }
         withAnimation {
             region.center = location.coordinate
-            region.span = MKCoordinateSpan(latitudeDelta: 0.10, longitudeDelta: 0.10)
+            region.span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         }
-        
-        searchSaunaList(writeRegion: false)
-        
+        DispatchQueue.main.async {
+            self.searchSaunaList(writeRegion: false)
+        }
 //        locationWord(location: location)
     }
     
@@ -157,7 +156,7 @@ extension MapViewModel: CLLocationManagerDelegate {
 //            let pos = CLLocationCoordinate2D(latitude: first.latitude!, longitude: first.longitude!)
             let firstRegion = MKCoordinateRegion(
                 center: CLLocationCoordinate2D(latitude: first.latitude!, longitude: first.longitude!),
-                span: MKCoordinateSpan(latitudeDelta: 0.10, longitudeDelta: 0.10))
+                span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
             if writeRegion { withAnimation { region = firstRegion } }
             
         }
@@ -242,7 +241,7 @@ extension MapViewModel: CLLocationManagerDelegate {
         let queryItemLon = URLQueryItem(name: "longitude", value: String(region.center.longitude))
         let queryItemCurrentLat = URLQueryItem(name: "currentLatitude", value: String(currentRegion.center.latitude))
         let queryItemCurrentLon = URLQueryItem(name: "currentLongitude", value: String(currentRegion.center.longitude))
-        let queryItemRadius = URLQueryItem(name: "radius", value: keyword != "" ? "1000" : "5")
+        let queryItemRadius = URLQueryItem(name: "radius", value: keyword != "" ? "1000" : "3")
         let queryItemSortType = URLQueryItem(name: "sortType", value: String(SortProperty().sort))
         queryItems.append(queryItemLat)
         queryItems.append(queryItemLon)

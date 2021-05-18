@@ -17,12 +17,10 @@ struct SaunaRecommendView: View {
     @EnvironmentObject var viewModel: RecommendViewModel
     @State var saunaInfoVisible: Bool = false
     @State var tabs: [Tab] = [
-        .init(title: "現在地 ✗ 厳選"),
-        .init(title: "全国厳選")
+        Tab(title: "現在地 ✗ 厳選"),
+        Tab(title: "全国厳選")
     ]
     
-    init() {
-    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -37,16 +35,10 @@ struct SaunaRecommendView: View {
             TabView(selection: $selectedMain) {
                 LocationRecommend(saunaInfoVisible: $saunaInfoVisible, locationSaunas: $viewModel.locationSaunas).tag(0)
                 AllRecommend(saunaInfoVisible: $saunaInfoVisible, saunas: $viewModel.saunas).tag(1)
+//                AllRecommend(saunaInfoVisible: $saunaInfoVisible, saunas: $viewModel.saunas).tag(1)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
-        }.onAppear() {
-            tabs[0].title = "\(mapViewModel.locationName) ✗ 厳選"
-            viewModel.searchLocationSaunaList(writeRegion: false,
-                                              currentLatitude: String(mapViewModel.currentRegion.center.latitude),
-                                              currentLongitude: String(mapViewModel.currentRegion.center.longitude)
-            )
-            viewModel.searchSaunaList(writeRegion: false, completion: { _ in })
         }
         .sheet(isPresented: $saunaInfoVisible) {
             SaunasView(saunas: selectedMain == 0 ? $viewModel.locationSaunas : $viewModel.saunas)
@@ -69,38 +61,35 @@ struct AllRecommend: View {
     }
     
     var body: some View {
-        VStack {
-            List {
-                if saunas.count > 0 {
-                    ForEach(saunas.indices, id: \.self) { index in
-                        VStack(alignment: .leading, spacing: 0) {
-                            let image_url = saunas[index].image.url
-                            URLImageView("\(API.init().imageUrl)\(String(describing: image_url))")
-                                .aspectRatio(contentMode: .fill)
-                                .frame(maxHeight: 250)
-                                .clipped()
-                            contentView(sauna: saunas[index])
-                        }.onTapGesture {
-                            UserDefaults.standard.setValue(index, forKey: "selectTabSaunaView")
-                            saunaInfoVisible = true
-                        }
-                        .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
-                    }
-                } else {
-                    Text("厳選サウナが見つかりませんでした")
-                }
-                
-            }.pullToRefresh(isShowing: $isPullShowing) {
+        ScrollView {
+            RefreshControl(coordinateSpace: .named("RefreshControl")) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     viewModel.searchSaunaList(writeRegion: false, completion: { _ in })
-                    self.isPullShowing = false
                 }
+            }
+            LazyVGrid(columns: [GridItem(.flexible())], alignment: .center, spacing: 0) {
+                    if saunas.count > 0 {
+                        ForEach(saunas.indices, id: \.self) { index in
+                            VStack(alignment: .leading, spacing: 0) {
+                                let image_url = saunas[index].image.url
+                                URLImageView("\(API.init().imageUrl)\(String(describing: image_url))")
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(maxHeight: 250)
+                                    .clipped()
+                                contentView(sauna: saunas[index])
+                            }.onTapGesture {
+                                UserDefaults.standard.setValue(index, forKey: "selectTabSaunaView")
+                                saunaInfoVisible = true
+                            }
+                            .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0))
+                        }
+                    } else {
+                        Text("厳選サウナが見つかりませんでした")
+                    }
             }
             .listStyle(PlainListStyle())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .onAppear() {
-        }
+        }.coordinateSpace(name: "RefreshControl")
     }
 }
 
@@ -121,8 +110,16 @@ struct LocationRecommend: View {
     
     
     var body: some View {
-        VStack {
-            List {
+        ScrollView {
+            RefreshControl(coordinateSpace: .named("RefreshControl")) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    viewModel.searchLocationSaunaList(writeRegion: false,
+                                                      currentLatitude: String(mapViewModel.currentRegion.center.latitude),
+                                                      currentLongitude: String(mapViewModel.currentRegion.center.longitude)
+                    )
+                }
+            }
+            LazyVGrid(columns: [GridItem(.flexible())], alignment: .center, spacing: 0) {
                 if locationSaunas.count > 0 {
                     ForEach(locationSaunas.indices, id: \.self) { index in
                         VStack(alignment: .leading, spacing: 0) {
@@ -142,21 +139,9 @@ struct LocationRecommend: View {
                     Text("厳選サウナが見つかりませんでした")
                 }
             }
-            .pullToRefresh(isShowing: $isPullShowing) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    
-                    viewModel.searchLocationSaunaList(writeRegion: false,
-                                                      currentLatitude: String(mapViewModel.currentRegion.center.latitude),
-                                                      currentLongitude: String(mapViewModel.currentRegion.center.longitude)
-                    )
-                    self.isPullShowing = false
-                }
-            }
             .listStyle(PlainListStyle())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .onAppear() {
-        }
+        }.coordinateSpace(name: "RefreshControl")
     }
 }
 

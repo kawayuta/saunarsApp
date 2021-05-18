@@ -11,8 +11,14 @@ import SwiftUI
 
 final class UserViewModel: ObservableObject {
     @Published var user: User?
+    
+    @Published var activities_month_sauna: [Double] = []
+    @Published var activities_month_mizu: [Double] = []
+    @Published var activities_month_mizu_adjust: [Double] = []
+    @Published var activities_month_rate: Int = 0
+    
     let userDefaults = UserDefaults.standard
-    let current_user_id: Int
+    var current_user_id: Int = 0
     @Published var tapSaunaId: Int?
     @Published var profileRegisterVisible: Bool = false
     @Published var profileEditVisible: Bool = false
@@ -48,9 +54,37 @@ final class UserViewModel: ObservableObject {
         case accountSetting
     }
     
-    init() {
-        current_user_id = userDefaults.integer(forKey: "current_id")
-    }
+    
+    func createTotal() {
+            activities_month_sauna.removeAll()
+            activities_month_mizu.removeAll()
+            activities_month_mizu_adjust.removeAll()
+            if let user = user {
+                user.activities_month_saunas_rooms.map {
+                    if $0.mizu_temperature != nil && $0.sauna_temperature != nil {
+                        
+                        let sauna_temp = Double($0.sauna_temperature!)
+                        let mizu_temp = Double($0.mizu_temperature!)
+                        activities_month_sauna.insert(sauna_temp, at: 0)
+                        activities_month_mizu.insert(mizu_temp, at: 0)
+                        activities_month_mizu_adjust.insert(mizu_temp * 4, at: 0)
+                        print(activities_month_sauna)
+                        print(activities_month_mizu)
+                    }
+                }
+            }
+            
+            if activities_month_sauna.count > 1 {
+                let last = activities_month_sauna.last! - activities_month_mizu.last!
+                let prev = activities_month_sauna[activities_month_sauna.count - 2] - activities_month_mizu[activities_month_mizu.count - 2]
+                activities_month_rate = Int(last) - Int(prev)
+                print(Int(last))
+                print(Int(prev))
+            } else {
+                activities_month_rate = 0
+            }
+        }
+        
     
     func updateValidate() {
         
@@ -111,6 +145,8 @@ final class UserViewModel: ObservableObject {
     
     
     func updateUser() {
+        
+        current_user_id = userDefaults.integer(forKey: "current_id")
         
         guard avatarRegisterValidate && nameRegisterValidate else {
             return
@@ -359,6 +395,7 @@ final class UserViewModel: ObservableObject {
     
     
     func fetchUser() {
+        current_user_id = userDefaults.integer(forKey: "current_id")
         if userDefaults.string(forKey: "password") != nil {
             currentPassword = userDefaults.string(forKey: "password")!
         }
@@ -387,6 +424,7 @@ final class UserViewModel: ObservableObject {
                             
                                 DispatchQueue.main.async {
                                     user = json
+                                    createTotal()
                                     if let name = json.name { self.name = name }
                                     
                                     if !json.email.contains("saunavi.app.com") {

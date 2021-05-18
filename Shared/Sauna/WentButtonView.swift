@@ -30,7 +30,7 @@ struct WentButtonView: View {
                 }
             }, label: {
                 Text(viewModel.state ? "イキタイ済" : "イキタイ！")
-                    .font(.title3)
+                    .font(.custom("CP Font", size: 20))
             })
             .frame(maxWidth: 150, maxHeight: 50, alignment: .center)
             .background(RoundedRectangle(cornerRadius: 15).fill(viewModel.state ? .blue : Color.white).softOuterShadow())

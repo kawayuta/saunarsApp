@@ -14,6 +14,7 @@ struct TimelineView: View {
     
     @EnvironmentObject var partialSheetManager: PartialSheetManager
     @EnvironmentObject var viewModel: TimelineViewModel
+//    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var mapViewModel: MapViewModel
     @State var postReviewVisible: Bool = false
     @State var mypageVisible: Bool = false
@@ -25,8 +26,14 @@ struct TimelineView: View {
     let mainColor = Color.Neumorphic.main
     
     var body: some View {
-            ZStack(alignment: .bottomTrailing) {
-                List {
+        ZStack(alignment: .bottomTrailing) {
+            ScrollView {
+                RefreshControl(coordinateSpace: .named("RefreshControl")) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        viewModel.fetchTimeline()
+                    }
+                }
+                LazyVGrid(columns: [GridItem(.flexible())], alignment: .center, spacing: 0) {
                     ForEach(viewModel.activities.indices, id: \.self) { index in
                         VStack(alignment: .leading, spacing: 0) {
 
@@ -38,7 +45,7 @@ struct TimelineView: View {
                                 timelineActivityImageView(images: images)
                                     .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
                             }
-
+//
                             timelineActivityFooter(activity: $viewModel.activities[index], sauna: $viewModel.activities[index].sauna)
 
                             LikeButtonView(viewModel: .init(activity_id: String(viewModel.activities[index].id)))
@@ -50,25 +57,17 @@ struct TimelineView: View {
                         .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                     }
                 }
-                .ignoresSafeArea()
-                .listStyle(PlainListStyle())
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                 .partialSheet(isPresented: $postMenuVisible) {
                     menuView(activity_id: $activity_id, postMenuVisible: $postMenuVisible)
+                        .onDisappear() {
+                            viewModel.fetchTimeline()
+                        }
                 }
-                .cellSelectable(false)
-                .pullToRefresh(isShowing: $isPullShowing) {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        viewModel.fetchTimeline()
-                        self.isPullShowing = false
-                    }
-                }
-                postReviewButton
-            }
-            .onAppear() {
-                viewModel.fetchTimeline()
-            }
-            .addPartialSheet(style: PartialSheetStyle(background: .solid(mainColor),
+            }.coordinateSpace(name: "RefreshControl")
+            postReviewButton
+        }
+        .addPartialSheet(style: PartialSheetStyle(background: .solid(mainColor),
                                                               handlerBarColor: Color(UIColor.systemGray2),
                                                               enableCover: true,
                                                               coverColor: Color.black.opacity(0.4),
@@ -101,6 +100,7 @@ struct TimelineView: View {
             postActivityReviewView(mapViewModel: mapViewModel, isPresent: $postReviewVisible, myPageVisible: $mypageVisible)
                 .onDisappear() {
                     viewModel.fetchTimeline()
+//                    userViewModel.fetchUser()
                 }
         }
         .frame(width: 80, height: 80)
@@ -112,7 +112,6 @@ struct TimelineView: View {
     
     
 }
-
 
 
 struct timelineActivityHeader: View {

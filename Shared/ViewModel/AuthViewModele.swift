@@ -214,7 +214,7 @@ extension AuthViewModel {
         do {
             let data = try encoder.encode(body)
             request.httpBody = data
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let task = URLSession.shared.dataTask(with: request) { [self] (data, response, error) in
                 guard let data = data else { return }
                 do {
                     _ = try JSONSerialization.jsonObject(with: data, options: [])
@@ -241,6 +241,7 @@ extension AuthViewModel {
                             let decoder = JSONDecoder()
                             let json = try decoder.decode(AuthResponse.self, from: data)
                             self.userDefaults.set(json.data.id, forKey: "current_id")
+                            print(userDefaults.integer(forKey: "current_id"))
                             completion(true)
                         } else {
                             DispatchQueue.main.async { self.RequestStateFlag = false }

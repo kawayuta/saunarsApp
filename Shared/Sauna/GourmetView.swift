@@ -204,7 +204,7 @@ struct GourmetCardInfoSheetView: View {
             if UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!) {
                 urlString = "comgooglemaps://?daddr=\(latitude),\(longitude)&directionsmode=walking&zoom=14"
             } else {
-                urlString = "http://maps.apple.com/?daddr=\(latitude),\(longitude)&dirflg=w"
+                urlString = "https://maps.apple.com/?daddr=\(latitude),\(longitude)&dirflg=w"
             }
             if let url = URL(string: urlString) {
                 UIApplication.shared.open(url)

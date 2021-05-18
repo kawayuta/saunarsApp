@@ -26,17 +26,20 @@ struct saucialAppApp: App {
     private let userDefaults = UserDefaults.standard
     @State var LoginCheck: Bool = false
     @ObservedObject var viewModel = AuthViewModel(mode: .signup)
-    @StateObject var appModel = SaunaviMessageViewModel()
+    @ObservedObject var mapViewModel = MapViewModel()
+    @ObservedObject var recommendViewModel = RecommendViewModel()
+    @ObservedObject var timelineViewModel = TimelineViewModel()
+    @ObservedObject var userViewModel = UserViewModel()
     var body: some Scene {
         WindowGroup {
             
             VStack {
                 if LoginCheck {
-                    HomeView().environmentObject(Keyboard()).environmentObject(appModel)
-                        .environmentObject(MapViewModel())
-                        .environmentObject(RecommendViewModel())
-                        .environmentObject(TimelineViewModel())
-                        .environmentObject(UserViewModel())
+                    HomeView().environmentObject(Keyboard())
+                        .environmentObject(mapViewModel)
+                        .environmentObject(recommendViewModel)
+                        .environmentObject(timelineViewModel)
+                        .environmentObject(userViewModel)
                         .sendEventLog(.lanch)
                 } else {
                     LoadingAnimatedView(LoginCheck: $LoginCheck)
@@ -47,6 +50,15 @@ struct saucialAppApp: App {
                 viewModel.autoSignUpIn(completion: { completion in
                     if completion {
                         LoginCheck = true
+                        DispatchQueue.main.async {
+                            timelineViewModel.fetchTimeline()
+                            recommendViewModel.searchLocationSaunaList(writeRegion: false,
+                                                              currentLatitude: String(mapViewModel.currentRegion.center.latitude),
+                                                              currentLongitude: String(mapViewModel.currentRegion.center.longitude)
+                            )
+                            recommendViewModel.searchSaunaList(writeRegion: false, completion: { _ in })
+                            userViewModel.fetchUser()
+                        }
                     }
                 })
             }

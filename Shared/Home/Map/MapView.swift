@@ -66,6 +66,7 @@ struct MapView: UIViewRepresentable {
                 DispatchQueue.main.async { anotationsBuildings.append(items) }
                 let annotation = ClusterAnnotation(coordinate: items.coordinate)
                 annotation.sauna_id = String(items.sauna_id)
+                annotation.is_went = items.is_went
                 annotation.image_url = String(items.image_url)
                 annotation.index_id = items.index_id
                 annotation.title = items.name // annotation isempty? hantei
@@ -73,6 +74,7 @@ struct MapView: UIViewRepresentable {
                 manager.add(annotation)
                 manager.reload(mapView: mapView)
                 
+                print(items.is_went)
                 
                 if viewModel.regionApply {
                     mapView.setRegion(viewModel.region, animated: false)
@@ -144,7 +146,7 @@ struct MapView: UIViewRepresentable {
         public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             print(222)
             viewModel.region = mapView.region
-            if LanchSearchState {viewModel.searchSaunaList(writeRegion: false)}
+            if LanchSearchState {DispatchQueue.main.async { self.viewModel.searchSaunaList(writeRegion: false)}}
             else {DispatchQueue.main.async { [self] in LanchSearchState = true }}
             
             manager.reload(mapView: mapView)
@@ -187,6 +189,7 @@ extension ClusterAnnotation {
         static var sauna_id: String = ""
         static var image_url: String = ""
         static var index_id: Int?
+        static var is_went: Bool = false
     }
 
     var sauna_id: String {
@@ -224,6 +227,18 @@ extension ClusterAnnotation {
             objc_setAssociatedObject(self, &additional.index_id, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
+    
+    var is_went: Bool {
+        get {
+            guard let theUrl = objc_getAssociatedObject(self, &additional.is_went) as? Bool else {
+                return false
+            }
+            return theUrl
+        }
+        set {
+            objc_setAssociatedObject(self, &additional.is_went, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
 }
 extension ClusterAnnotationView {
     private struct additional {
@@ -252,12 +267,13 @@ class CountClusterAnnotationView: ClusterAnnotationView {
         guard let annotation = annotation as? ClusterAnnotation else { return }
         let count = annotation.annotations.count
         _ = annotation.sauna_id
+        let is_went = annotation.is_went
         let image_url = annotation.image_url
         let diameter = radius(for: count) * 4
         self.frame.size = CGSize(width: diameter, height: diameter)
         self.countLabel.layer.masksToBounds = true
         self.imageView.layer.masksToBounds = true
-        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderColor = is_went ? UIColor.blue.cgColor : UIColor.white.cgColor
         self.layer.borderWidth = 3
         self.layer.backgroundColor = Color(hex: "95B2FD").cgColor
         self.countLabel.font = UIFont.systemFont(ofSize: 20.0)
@@ -267,6 +283,8 @@ class CountClusterAnnotationView: ClusterAnnotationView {
         self.layer.shadowRadius = self.frame.width / 3
         self.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.layer.shadowOpacity = 0.3
+        
+        print(is_went)
         if image_url != "" {
             self.imageView.cacheImage(imageUrlString: "\(API.init().imageUrl)\(image_url)")
             self.layer.cornerRadius = self.frame.width / 3

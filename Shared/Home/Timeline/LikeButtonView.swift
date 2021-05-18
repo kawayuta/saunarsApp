@@ -14,7 +14,6 @@ struct LikeButtonView: View {
     
     init(viewModel: LikeButtonViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        viewModel.fetchLike()
     }
     
     var likeButton: some View {
@@ -35,7 +34,7 @@ struct LikeButtonView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 15)
                                     .foregroundColor(viewModel.state ? .white : .gray)
-                            Text("イイネ！").font(.subheadline, weight: .bold)
+                            Text("イイネ！").font(.custom("CP Font", size: 15))
                                 .foregroundColor(viewModel.state ? .white : .gray)
                         }
                         
@@ -49,6 +48,10 @@ struct LikeButtonView: View {
                     .padding(EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 10))
                 }.background(viewModel.state ? .pink : mainColor)
             })
+        }.onAppear() {
+            DispatchQueue.global().async {
+                viewModel.fetchLike()
+            }
         }
     }
     

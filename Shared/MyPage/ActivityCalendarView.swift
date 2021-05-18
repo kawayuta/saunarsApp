@@ -28,6 +28,7 @@ struct ActivityCalendarView: UIViewRepresentable {
         calendar.appearance.todayColor = UIColor.systemGreen
         calendar.appearance.selectionColor = UIColor.systemBlue
         calendar.scope = .week
+        calendar.calendarHeaderView.isHidden = true
         calendar.appearance.headerDateFormat = "YYYY年（ww週目）MM月"
         calendar.calendarWeekdayView.weekdayLabels[0].text = "日"
         calendar.calendarWeekdayView.weekdayLabels[1].text = "月"
@@ -63,29 +64,27 @@ struct ActivityCalendarView: UIViewRepresentable {
                     formatter.timeZone = TimeZone.current
                     formatter.locale = Locale.current
             
-            print(11111)
-//            if activities_month.contains(where: {DateUtils.dateFromString(string: $0.created_at!, format: "yyyy/MM/dd") == date}) {
-//                image = UIImage(systemName: "heart")
-//            }
+            activities_month.map { item in
+                let aa = formatter.date(from: item.created_at ?? "")
+                print(aa)
+                print(item.created_at)
+                
+            }
+//            print(DateUtils.dateFromString(string: $0.created_at!)
+            if activities_month.contains(where: {formatter.date(from: $0.created_at ?? "") == date}) {
+                image = UIImage(systemName: "heart")
+            }
             
             return image
+        }
+        
+        
+        func dateFormatStr(fmt: String, str: String ) -> Date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = fmt
+            let date_to = dateFormatter.date(from: str)
+            return date_to!
         }
     }
 }
 
-
-class DateUtils {
-    class func dateFromString(string: String, format: String) -> Date {
-        let formatter: DateFormatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.dateFormat = format
-        return formatter.date(from: string)!
-    }
-
-    class func stringFromDate(date: Date, format: String) -> String {
-        let formatter: DateFormatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.dateFormat = format
-        return formatter.string(from: date)
-    }
-}

@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "SwiftUICharts",
+        "repositoryURL": "https://github.com/AppPear/ChartView",
+        "state": {
+          "branch": null,
+          "revision": "9115a992c91fa19cbb4f2241084240d38654a1fc",
+          "version": "1.5.5"
+        }
+      },
+      {
         "package": "Cluster",
         "repositoryURL": "https://github.com/efremidze/Cluster.git",
         "state": {
@@ -17,15 +26,6 @@
           "branch": null,
           "revision": "a31bd418be8e49b7b118d93f1e79b3a91407e82a",
           "version": "0.5.0"
-        }
-      },
-      {
-        "package": "Instantiate",
-        "repositoryURL": "https://github.com/tarunon/Instantiate.git",
-        "state": {
-          "branch": null,
-          "revision": "5652b7deb45e4826dab31fa67336c1f9649e42c2",
-          "version": "4.0.1"
         }
       },
       {
@@ -56,21 +56,21 @@
         }
       },
       {
+        "package": "RefreshableScrollView",
+        "repositoryURL": "https://github.com/phuhuynh2411/RefreshableScrollView.git",
+        "state": {
+          "branch": null,
+          "revision": "e06edf5dc4facc7fbf71179e8a94f0d1c7035ce3",
+          "version": "1.1.1"
+        }
+      },
+      {
         "package": "RxSwift",
         "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
         "state": {
           "branch": null,
           "revision": "7e01c05f25c025143073eaa3be3532f9375c614b",
           "version": "6.1.0"
-        }
-      },
-      {
-        "package": "Introspect",
-        "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect.git",
-        "state": {
-          "branch": null,
-          "revision": "2e09be8af614401bc9f87d40093ec19ce56ccaf2",
-          "version": "0.1.3"
         }
       },
       {

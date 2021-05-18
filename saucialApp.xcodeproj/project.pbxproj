@@ -41,8 +41,6 @@
 		3F48D320262C94DE00E33ED4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F48D31F262C94DE00E33ED4 /* GoogleService-Info.plist */; };
 		3F48D326262C954F00E33ED4 /* tileOverlay.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F48D325262C954F00E33ED4 /* tileOverlay.json */; };
 		3F48D33E262D515900E33ED4 /* FirebaseAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F48D33D262D515900E33ED4 /* FirebaseAnalyticsTracker.swift */; };
-		3F52CF5D262DAA2500899162 /* Instantiate in Frameworks */ = {isa = PBXBuildFile; productRef = 3F52CF5C262DAA2500899162 /* Instantiate */; };
-		3F52CF5F262DAA2500899162 /* InstantiateStandard in Frameworks */ = {isa = PBXBuildFile; productRef = 3F52CF5E262DAA2500899162 /* InstantiateStandard */; };
 		3F61868326404F5600872BF4 /* RecommendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F61868226404F5600872BF4 /* RecommendListView.swift */; };
 		3F6186962641621F00872BF4 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6186952641621F00872BF4 /* ImagePickerView.swift */; };
 		3F6186972641621F00872BF4 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6186952641621F00872BF4 /* ImagePickerView.swift */; };
@@ -89,6 +87,11 @@
 		3F72BCFE260FBAD20076BE7F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F72BCFC260FBAD20076BE7F /* MapView.swift */; };
 		3F72BD8C2610325A0076BE7F /* Cluster in Frameworks */ = {isa = PBXBuildFile; productRef = 3F72BD8B2610325A0076BE7F /* Cluster */; };
 		3F72BD9B26103DD30076BE7F /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 3F72BD9A26103DD30076BE7F /* Neumorphic */; };
+		3F77F2062652208F00679EC7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77F2052652208F00679EC7 /* ActivityView.swift */; };
+		3F77F2072652208F00679EC7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77F2052652208F00679EC7 /* ActivityView.swift */; };
+		3F77F20E2652AE4300679EC7 /* CPFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F77F20D2652AE4200679EC7 /* CPFont.ttf */; };
+		3F77F24F2652C10F00679EC7 /* RefreshableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 3F77F24E2652C10F00679EC7 /* RefreshableScrollView */; };
+		3F77F2562652C18B00679EC7 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 3F77F2552652C18B00679EC7 /* SwiftUICharts */; };
 		3F99420C2609343D0078888C /* URLQueryItemsCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 3F99420B2609343D0078888C /* URLQueryItemsCoder */; };
 		3F99421226094D7E0078888C /* SaunaMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99421126094D7E0078888C /* SaunaMapView.swift */; };
 		3F99421326094D7E0078888C /* SaunaMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F99421126094D7E0078888C /* SaunaMapView.swift */; };
@@ -160,7 +163,6 @@
 		3FDB27C626337F7600FE25DB /* postBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27C426337F7600FE25DB /* postBodyView.swift */; };
 		3FDB27CC2634547F00FE25DB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27CB2634547F00FE25DB /* Activity.swift */; };
 		3FDB27CD2634547F00FE25DB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB27CB2634547F00FE25DB /* Activity.swift */; };
-		3FDB27D426347FC400FE25DB /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 3FDB27D326347FC400FE25DB /* Introspect */; };
 		3FE59071262F66B600412362 /* SortDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE59070262F66B600412362 /* SortDropDownView.swift */; };
 		3FE59072262F66B600412362 /* SortDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE59070262F66B600412362 /* SortDropDownView.swift */; };
 		3FE590AC2630B37100412362 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE590AB2630B37100412362 /* MyPageView.swift */; };
@@ -242,6 +244,8 @@
 		3F72BCD4260EAB110076BE7F /* SaunaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaunaViewModel.swift; sourceTree = "<group>"; };
 		3F72BCEE260F9FCD0076BE7F /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		3F72BCFC260FBAD20076BE7F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		3F77F2052652208F00679EC7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		3F77F20D2652AE4200679EC7 /* CPFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CPFont.ttf; sourceTree = "<group>"; };
 		3F99421126094D7E0078888C /* SaunaMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaunaMapView.swift; sourceTree = "<group>"; };
 		3F994226260985740078888C /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		3F994247260CF4E60078888C /* resultCardRoomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultCardRoomsView.swift; sourceTree = "<group>"; };
@@ -311,18 +315,17 @@
 			files = (
 				3FABDFF02628823300B0B09A /* RxRelay in Frameworks */,
 				3FABDFF42628823300B0B09A /* RxBlocking in Frameworks */,
+				3F77F24F2652C10F00679EC7 /* RefreshableScrollView in Frameworks */,
 				3FABDFEE2628823300B0B09A /* RxSwift in Frameworks */,
 				3FABDFF22628823300B0B09A /* RxCocoa in Frameworks */,
 				3FD3D12625FBD21200748910 /* PartialSheet in Frameworks */,
-				3FDB27D426347FC400FE25DB /* Introspect in Frameworks */,
-				3F52CF5D262DAA2500899162 /* Instantiate in Frameworks */,
 				3F99420C2609343D0078888C /* URLQueryItemsCoder in Frameworks */,
 				3F72BCE9260F9D170076BE7F /* SwiftUIPager in Frameworks */,
 				3FD3D13825FBE1FF00748910 /* SwiftUIX in Frameworks */,
+				3F77F2562652C18B00679EC7 /* SwiftUICharts in Frameworks */,
 				3F72BD9B26103DD30076BE7F /* Neumorphic in Frameworks */,
 				3F99421A260958AE0078888C /* GoogleMapsTileOverlay in Frameworks */,
 				3F72BD8C2610325A0076BE7F /* Cluster in Frameworks */,
-				3F52CF5F262DAA2500899162 /* InstantiateStandard in Frameworks */,
 				3F99423E260BF2AC0078888C /* KeyboardObserving in Frameworks */,
 				6D23AFE5571DCD0D6056D545 /* Pods_saucialApp__iOS_.framework in Frameworks */,
 			);
@@ -420,6 +423,14 @@
 			path = Sauna;
 			sourceTree = "<group>";
 		};
+		3F77F20C2652AD8200679EC7 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3F77F20D2652AE4200679EC7 /* CPFont.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		3FB95A0525FAC7F50071C9B6 /* Users */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,6 +491,7 @@
 		3FC2DF0425F9D8350080D98F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3F77F20C2652AD8200679EC7 /* Fonts */,
 				3FE590AA2630B35900412362 /* MyPage */,
 				3F48D33C262D514500E33ED4 /* Analytics */,
 				3F67209F25FD0B4000149D17 /* Sauna */,
@@ -601,6 +613,7 @@
 				3F61869C2641623F00872BF4 /* ProfileImageView.swift */,
 				3F6186952641621F00872BF4 /* ImagePickerView.swift */,
 				3F220CA0264AEDBA008FB38D /* ActivityCalendarView.swift */,
+				3F77F2052652208F00679EC7 /* ActivityView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -669,9 +682,8 @@
 				3FABDFEF2628823300B0B09A /* RxRelay */,
 				3FABDFF12628823300B0B09A /* RxCocoa */,
 				3FABDFF32628823300B0B09A /* RxBlocking */,
-				3F52CF5C262DAA2500899162 /* Instantiate */,
-				3F52CF5E262DAA2500899162 /* InstantiateStandard */,
-				3FDB27D326347FC400FE25DB /* Introspect */,
+				3F77F24E2652C10F00679EC7 /* RefreshableScrollView */,
+				3F77F2552652C18B00679EC7 /* SwiftUICharts */,
 			);
 			productName = "saucialApp (iOS)";
 			productReference = 3FC2DF0C25F9D8380080D98F /* saucialApp.app */;
@@ -776,8 +788,8 @@
 				3F72BD8A2610325A0076BE7F /* XCRemoteSwiftPackageReference "Cluster" */,
 				3F72BD9926103DD30076BE7F /* XCRemoteSwiftPackageReference "neumorphic" */,
 				3FABDFEC2628823300B0B09A /* XCRemoteSwiftPackageReference "RxSwift" */,
-				3F52CF5B262DAA2500899162 /* XCRemoteSwiftPackageReference "Instantiate" */,
-				3FDB27D226347FC400FE25DB /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				3F77F24D2652C10F00679EC7 /* XCRemoteSwiftPackageReference "RefreshableScrollView" */,
+				3F77F2542652C18B00679EC7 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = 3FC2DF0D25F9D8380080D98F /* Products */;
 			projectDirPath = "";
@@ -800,6 +812,7 @@
 				3F48D326262C954F00E33ED4 /* tileOverlay.json in Resources */,
 				3F6188532645614200872BF4 /* load.json in Resources */,
 				3F61884C26455AE500872BF4 /* loading.json in Resources */,
+				3F77F20E2652AE4300679EC7 /* CPFont.ttf in Resources */,
 				3F48D320262C94DE00E33ED4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -952,6 +965,7 @@
 				3F0E31572635F20700E2D6D9 /* WebView.swift in Sources */,
 				3FE590FF2631181600412362 /* User.swift in Sources */,
 				3F61868326404F5600872BF4 /* RecommendListView.swift in Sources */,
+				3F77F2062652208F00679EC7 /* ActivityView.swift in Sources */,
 				3F220C1A26470C79008FB38D /* LikeButtonViewModel.swift in Sources */,
 				3F61869D2641623F00872BF4 /* ProfileImageView.swift in Sources */,
 				3F6720B325FD0BB600149D17 /* SaunaSmallView.swift in Sources */,
@@ -1027,6 +1041,7 @@
 				3F0E31E02638AD1B00E2D6D9 /* PagerView.swift in Sources */,
 				3F67209625FCE29800149D17 /* TestView.swift in Sources */,
 				3F994228260985740078888C /* MapViewModel.swift in Sources */,
+				3F77F2072652208F00679EC7 /* ActivityView.swift in Sources */,
 				3FDB27AC26333A3500FE25DB /* Review.swift in Sources */,
 				3FC2DF2F25F9D8380080D98F /* saucialAppApp.swift in Sources */,
 				3F0E31762635FB9B00E2D6D9 /* ReviewChartView.swift in Sources */,
@@ -1209,7 +1224,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 99FL75GE6T;
 				ENABLE_PREVIEWS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1219,7 +1234,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kawayuta.saunastep;
 				PRODUCT_NAME = saucialApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1237,7 +1252,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 99FL75GE6T;
 				ENABLE_PREVIEWS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1247,7 +1262,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.7;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kawayuta.saunastep;
 				PRODUCT_NAME = saucialApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1450,14 +1465,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3F52CF5B262DAA2500899162 /* XCRemoteSwiftPackageReference "Instantiate" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tarunon/Instantiate.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.1;
-			};
-		};
 		3F72BCE7260F9D170076BE7F /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
@@ -1480,6 +1487,22 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.5;
+			};
+		};
+		3F77F24D2652C10F00679EC7 /* XCRemoteSwiftPackageReference "RefreshableScrollView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/phuhuynh2411/RefreshableScrollView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
+		3F77F2542652C18B00679EC7 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.5;
 			};
 		};
 		3F99420A2609343D0078888C /* XCRemoteSwiftPackageReference "URLQueryItemsCoder" */ = {
@@ -1530,27 +1553,9 @@
 				minimumVersion = 0.0.5;
 			};
 		};
-		3FDB27D226347FC400FE25DB /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3F52CF5C262DAA2500899162 /* Instantiate */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3F52CF5B262DAA2500899162 /* XCRemoteSwiftPackageReference "Instantiate" */;
-			productName = Instantiate;
-		};
-		3F52CF5E262DAA2500899162 /* InstantiateStandard */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3F52CF5B262DAA2500899162 /* XCRemoteSwiftPackageReference "Instantiate" */;
-			productName = InstantiateStandard;
-		};
 		3F72BCE8260F9D170076BE7F /* SwiftUIPager */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3F72BCE7260F9D170076BE7F /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
@@ -1565,6 +1570,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3F72BD9926103DD30076BE7F /* XCRemoteSwiftPackageReference "neumorphic" */;
 			productName = Neumorphic;
+		};
+		3F77F24E2652C10F00679EC7 /* RefreshableScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F77F24D2652C10F00679EC7 /* XCRemoteSwiftPackageReference "RefreshableScrollView" */;
+			productName = RefreshableScrollView;
+		};
+		3F77F2552652C18B00679EC7 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F77F2542652C18B00679EC7 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
 		};
 		3F99420B2609343D0078888C /* URLQueryItemsCoder */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1610,11 +1625,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3FD3D13625FBE1FF00748910 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
 			productName = SwiftUIX;
-		};
-		3FDB27D326347FC400FE25DB /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3FDB27D226347FC400FE25DB /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

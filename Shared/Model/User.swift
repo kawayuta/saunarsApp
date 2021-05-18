@@ -37,6 +37,7 @@ struct User: Codable {
     let activities_reviews: [Review]
     let activities_saunas: [ReviewSauna]
     let activities_month: [Activity]
+    let activities_month_saunas_rooms: [Rooms]
 }
 struct Avatars: Codable {
     var url: String?

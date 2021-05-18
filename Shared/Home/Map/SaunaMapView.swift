@@ -17,7 +17,7 @@ struct SaunaMapView: View {
     @State var complateButtonVisibleState: Bool = false
     
     @EnvironmentObject var partialSheetManager: PartialSheetManager
-    @EnvironmentObject var saunaviViewModel: SaunaviMessageViewModel
+//    @EnvironmentObject var saunaviViewModel: SaunaviMessageViewModel
     @State var searchOptions = SearchOptions()
     @State var searchOptionVisible: Bool = false
     
@@ -37,17 +37,6 @@ struct SaunaMapView: View {
     @State private var selectedTab: Int = 0
     @State private var selectedMainViewTab: Int = 0
     
-    init() {
-//        UITableView.appearance().backgroundColor = .clear
-//        UITableViewCell.appearance().backgroundColor = .clear
-//        UINavigationBar.appearance().shadowImage = UIImage()
-//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-//        UINavigationBar.appearance().isTranslucent = true
-//        UINavigationBar.appearance().barTintColor = UIColor.clear
-//        
-//        UISegmentedControl.appearance().backgroundColor = mainColor.toUIColor()
-//        UISegmentedControl.appearance().selectedSegmentTintColor = .blue
-    }
     
     var searchButton: some View {
         Button(action: {
@@ -73,7 +62,10 @@ struct SaunaMapView: View {
         Button(action: {
             viewModel.regionApply = true
             viewModel.requestUserLocation()
-            viewModel.searchSaunaList(writeRegion: false)
+            
+            DispatchQueue.main.async {
+                viewModel.searchSaunaList(writeRegion: false)
+            }
             
             let impactMed = UIImpactFeedbackGenerator(style: .medium)
             impactMed.impactOccurred()
@@ -171,7 +163,7 @@ struct SaunaMapView: View {
                     .sheet(isPresented: $viewModel.tapState) {
                         SaunaView(sauna_id: viewModel.tapSaunaId)
                 }.ignoresSafeArea()
-                SaunaviMessageView()
+//                SaunaviMessageView()
             }
             
             VStack(alignment: .center, spacing: 0) {
@@ -226,9 +218,6 @@ struct SaunaMapView: View {
             mainView
             NavigationLink("", destination: MyPageView(), isActive: $mypageVisible)
                 .padding(EdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 15))
-        }
-        .onAppear() {
-            viewModel.searchSaunaList(writeRegion: false)
         }
         .addPartialSheet(style: PartialSheetStyle(background: .solid(mainColor),
                                                           handlerBarColor: Color(UIColor.systemGray2),

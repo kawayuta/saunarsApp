@@ -74,9 +74,6 @@ struct MyPageView: View {
             }
         }
         .navigationBarItems(trailing: settingsButton)
-        .onAppear() {
-            viewModel.fetchUser()
-        }
     }
     
     
@@ -226,7 +223,8 @@ struct MyPageView: View {
     var wentListView: some View {
         VStack(alignment: .leading) {
             if let user = viewModel.user {
-                List {
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 5) {
                     ForEach(user.wents.indices, id: \.self) { index in
                         HStack {
                             URLImageViewSta("\(API.init().imageUrl)\(String(describing: user.wents[index].image.url))")
@@ -238,6 +236,7 @@ struct MyPageView: View {
                             }
                             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
                         }
+                        .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
                         .onTapGesture {
                             DispatchQueue.main.async {
                                 viewModel.tapSaunaId = user.wents[index].id
@@ -247,6 +246,7 @@ struct MyPageView: View {
                             }
                         }
                     }
+                }
                 }
                 .sheet(isPresented: $saunaInfoVisible) {
                     SaunaView(sauna_id: String(viewModel.tapSaunaId!))
@@ -261,7 +261,7 @@ struct MyPageView: View {
             if let user = viewModel.user {
                 if let activities_saunas = user.activities_saunas {
                     ScrollView {
-                        LazyVStack(spacing: 0) {
+                        LazyVStack(alignment: .leading, spacing: 0) {
                             ForEach(user.activities.indices, id: \.self) { index in
                                 VStack(alignment: .leading) {
                                     

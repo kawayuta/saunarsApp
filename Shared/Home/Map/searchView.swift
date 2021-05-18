@@ -155,7 +155,10 @@ struct searchView: View {
                 }
                 viewModel.regionApply = true
                 searchOptions.optionValidCheck()
-                viewModel.searchSaunaList(writeRegion: true)
+                
+                DispatchQueue.main.async {
+                    viewModel.searchSaunaList(writeRegion: true)
+                }
             }.frame(minWidth: 80, maxWidth: .infinity, minHeight: 55, maxHeight: 55).font(.title)
             .foregroundColor(Color.white)
             .background(RoundedRectangle(cornerRadius: 20).fill(Color.blue).softOuterShadow())
